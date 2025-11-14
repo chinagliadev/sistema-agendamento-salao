@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Salao Agendamentos</title>
+    <link rel="stylesheet" href="./asset/css/style.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+
+        <main class="min-vh-100 d-flex align-items-center justify-content-center">
+
+            <div class="formulario shadow p-5 bg-white rounded w-100" style="max-width: 600px;">
+                <form action="./controller/UsuarioController.php" method="post" id="formCadastro">
+                    <h1 class="fs-2 fw-bold text-center">CRIAR CONTA</h1>
+                    <p class="fs-5 text-secondary text-center">Crie sua conta e comece a agendar seus serviços.</p>
+
+                    <div class="mb-3">
+                        <label for="txtNomeCompleto" class="form-label">Nome Completo</label>
+                        <input type="text" name="txtNomeCompleto" id="txtNomeCompleto" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtEmail" class="form-label">Email</label>
+                        <input type="email" name="txtEmail" id="txtEmail" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <label for="txtSenha" class="form-label">Senha</label>
+                                <input type="password" name="txtSenha" id="txtSenha" class="form-control">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="txtConfirmarSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" name="txtConfirmarSenha" id="txtConfirmarSenha" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtTelfone" class="form-label">Telefone</label>
+                        <input class="form-control" type="text" name="txtTelefone" id="txtTelefone">
+                    </div>
+
+                    <div class="alert alert-danger d-none" role="alert">
+                        Por favor cadastre os seguintes campos
+                        <ul id="lista_erros">
+
+                        </ul>
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        <span class=" fs-6 text-secondary">Já possui uma conta? Entrar <a class="text-decoration-none" href="./index.php">aqui</a>.</span>
+                    </div>
+
+
+                    <button type="button" class="w-100 btn btn-dark fw-bold" id="btnCadastrar">CADASTRAR</button>
+                </form>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="./asset/js/validacao-cadastro-usuario.js"></script>
+</body>
+
+</html>
