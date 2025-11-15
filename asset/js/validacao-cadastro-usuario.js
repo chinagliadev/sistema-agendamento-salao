@@ -1,18 +1,10 @@
 const form = document.getElementById('formCadastro');
 const btnCadastrar = document.getElementById('btnCadastrar');
 
-btnCadastrar.addEventListener("click", function(event){
+btnCadastrar.addEventListener("click", (event)=>{
     event.preventDefault(); 
 
-    listaErros = []; 
-
-    validarCamposCadastro(); 
-
-    if(listaErros.length > 0){
-        listarErros();
-    } else {
-        form.submit(); 
-    }
+    validarCamposCadastro()
 });
 
 function validarCamposCadastro(){
@@ -23,20 +15,19 @@ function validarCamposCadastro(){
     const telefone = document.getElementById('txtTelefone');
 
     if(nome.value.trim() === '' || !possuiSobrenome(nome)){
-        listaErros.push('Digite o nome completo.');
         nome.classList.add('input-erro')
     }
-    if(email === ''){
-        listaErros.push('Digite o email.');
+    if(email.value.trim() === ''){
+        email.classList.add('input-erro')
     }
-    if(senha === ''){
-        listaErros.push('Digite a senha.');
+    if(senha.value.trim() === ''){
+        senha.classList.add('input-erro')
     }
-    if(confirmar !== senha){
-        listaErros.push('As senhas não coincidem.');
+    if(confirmar.value.trim() !== senha){
+        confirmar.classList.add('input-erro')
     }
-    if(telefone === ''){
-        listaErros.push('Digite o telefone.');
+    if(telefone.value.trim() === ''){
+        telefone.classList.add('input-erro')
     }
 }
 
