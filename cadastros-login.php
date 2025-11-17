@@ -6,44 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Salao Agendamentos</title>
-    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/formulario-usuario.css">
 </head>
 
 <body class="bg-light">
 
     <div class="container">
 
-        <main class="min-vh-100 d-flex align-items-center justify-content-center">
+        <main class="min-vh-100 d-flex align-items-center justify-content-center formulario-cadastro">
 
             <div class="formulario shadow p-5 bg-white rounded w-100" style="max-width: 600px;">
                 <form action="./controller/UsuarioController.php" method="post" id="formCadastro">
                     <h1 class="fs-2 fw-bold text-center">CRIAR CONTA</h1>
                     <p class="fs-5 text-secondary text-center">Crie sua conta e comece a agendar seus serviços.</p>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label for="txtNomeCompleto" class="form-label">Nome Completo</label>
                         <input type="text" name="txtNomeCompleto" id="txtNomeCompleto" class="form-control">
+                        <p id="mensagem-erro" class="fw-semibold p-1 text-danger rounded">Por favor informe nome completo</p>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label for="txtEmail" class="form-label">Email</label>
                         <input type="email" name="txtEmail" id="txtEmail" class="form-control">
+                        <p id="mensagem-erro" class="fw-semibold p-1 text-danger rounded">Por favor informe o email corretamente</p>
                     </div>
 
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <label for="txtSenha" class="form-label">Senha</label>
-                                <input type="password" name="txtSenha" id="txtSenha" class="form-control">
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label for="txtConfirmarSenha" class="form-label">Confirmar Senha</label>
-                                <input type="password" name="txtConfirmarSenha" id="txtConfirmarSenha" class="form-control">
-                            </div>
-                        </div>
+                    <div class="mb-1">
+                        <label for="txtSenha" class="form-label">Senha</label>
+                        <input type="password" name="txtSenha" id="txtSenha" class="form-control">
+                        <p id="mensagem-erro" class="fw-semibold p-1 text-danger rounded">Por favor insira uma senha conforme os itens abaixo</p>
+                        <ul class="text-danger">
+                            <li>Insira um caracter especial</li>
+                            <li>Insira um caracter Maiusculo</li>
+                            <li>Insira um caracter Minusculo</li>
+                            <li>Insira um numero</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-1">
+                        <label for="txtConfirmarSenha" class="form-label">Confirmar Senha</label>
+                        <input type="password" name="txtConfirmarSenha" id="txtConfirmarSenha" class="form-control">
+                        <p id="mensagem-erro" class="fw-semibold p-1 text-danger rounded">Senhas não coincidem</p>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label for="txtTelfone" class="form-label">Telefone</label>
                         <input class="form-control" type="text" name="txtTelefone" id="txtTelefone">
                     </div>
