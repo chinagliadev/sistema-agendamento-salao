@@ -8,7 +8,7 @@ class Usuario
     private $telefone;
     private $nivel;
 
-    public function __construct($nome = "", $email = "", $senha = "", $telefone = "", $nivel="")
+    public function __construct($nome = "", $email = "", $senha = "", $telefone = "", $nivel="cliente")
     {
         $this->nome = $nome;
         $this->email = $email;

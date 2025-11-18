@@ -17,7 +17,7 @@ class usuarioDAO
 
     public function inserirDados(Usuario $usuario): int
     {
-        $sqlInserir = "INSERT INTO usuario (nome, email, telefone, senha, nivel) 
+        $sqlInserir = "INSERT INTO usuarios (nome, email, telefone, senha, nivel) 
                    VALUES (:nome, :email, :telefone, :senha, :nivel)";
 
         $dadosUsuario = $this->conn->prepare($sqlInserir);
@@ -32,4 +32,23 @@ class usuarioDAO
 
         return $this->conn->lastInsertId();
     }
+
+    public function validarLogin($email, $senhaDigitada)
+    {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute(['email' => $email]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            if (password_verify($senhaDigitada, $usuario['senha'])) {
+                return $usuario;
+            }
+        }
+
+        return false;
+    }
+
+    
 }

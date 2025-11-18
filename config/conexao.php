@@ -1,6 +1,5 @@
 <?php
-
-$env = parse_ini_file('../.env');
+$_ENV = parse_ini_file(__DIR__ . '/../.env');
 
 class conexao
 {

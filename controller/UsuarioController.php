@@ -17,4 +17,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
             exit; 
         }
+    
+    var_dump($_POST);
+
+    $nomeCompleto = $_POST['txtNomeCompleto'];
+    $email = $_POST['txtEmail'];
+    $senha = password_hash($_POST['txtSenha'], PASSWORD_DEFAULT);
+    $telefone = $_POST['txtTelefone'];
+
+    $usuario = new Usuario(
+        $nomeCompleto,
+        $email,
+        $senha,
+        $telefone,
+    );
+    
+    $usuarioDAO = new usuarioDAO();
+    $idUsuarioCadastrado = $usuarioDAO->inserirDados($usuario);
+    header('Location: ../index.php?cadastrado=true');
 }
