@@ -1,24 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<button id="btn-menu" class="btn btn-dark">
+  <i class="bi bi-list"></i>
+</button>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gerenciameto de salão</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<aside class="menu_lateral bg-dark text-white">
+  <section class="opcoes_menu">
 
-</head>
+    <div class="perfil">
+      <span class="usuario-info">
+        <h2 class="fs-6"><i class="bi bi-gear-fill"></i> Painel de Admin</h2>
+      </span>
+    </div>
 
-<body>
+    <div class="lista_opcoes">
+      <ul class="nav flex-column">
 
-<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasResponsiveLabel"> <i class="bi bi-gear-fill"></i> Painel de Admin</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-   
-  </div>
+        <li class="nav-item">
+          <a class="text-decoration-none nav-link active fs-5 text-white" href="../admin/dashboard.php"><i class="bi bi-archive-fill"></i> Dashboard</a>
+        </li>
 
-</div>
+        <li class="nav-item">
+          <a class="text-decoration-none nav-link fs-5 text-white" href="../admin/profissionais.php"><i class="bi bi-briefcase-fill"></i> Profissional</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-decoration-none nav-link fs-5 text-white" href="#"><i class="bi bi-scissors"></i> Serviços</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container_sair">
+    <a class="text-decoration-none fs-5 text-white" href="/sistema-leticia-duarte-web/logout.php"><i class="sign-out icon"></i>Sair</a>
+  </section>
+</aside>

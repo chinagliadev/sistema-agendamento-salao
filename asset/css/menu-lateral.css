@@ -1,0 +1,79 @@
+.menu_lateral {
+    background-color: #ffffff;
+    min-width: 230px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border-right: 2px solid rgb(222, 222, 222);
+
+    height: 100vh;
+    position: sticky; 
+    top: 0; 
+   
+    box-sizing: border-box; 
+}
+
+.menu_lateral .opcoes_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.opcoes_menu .lista_opcoes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: transform 0.5s ease;
+}
+
+
+.menu_lateral .container_sair i:hover {
+    color: #bd0808;
+}
+
+@media (max-width: 1024px) {
+    .menu_lateral {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        height: 100vh;
+        z-index: 1100;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu_lateral.ativo {
+        left: 0;
+    }
+
+    body.menu-aberto {
+        overflow-x: hidden;
+    }
+}
+
+#btn-menu {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1200;
+    opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+    #btn-menu {
+        display: block;
+    }
+}
+
+.bg-active-item {
+    background-color: rgb(17, 17, 17);
+    border-radius: 8px;
+}
