@@ -1,9 +1,12 @@
 <?php
 require_once '../config/autenticar.php';
 include '../template/header.php';
+require_once __DIR__ . '/../dao/ProfissionalDAO.php';
+
+$profissionais = new ProfissionalDAO();
+$listaProfissionais = $profissionais->listarProfissionais();
+
 ?>
-
-
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
 
@@ -49,13 +52,12 @@ include '../template/header.php';
                             </ul>
                         </div>
 
-                        <button 
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalCadastro"
-                        >
-                        <i class="bi bi-person-plus"></i>
-                        Cadastrar profissional</button>
+                        <button
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalCadastro">
+                            <i class="bi bi-person-plus"></i>
+                            Cadastrar profissional</button>
                     </div>
 
                 </div>
@@ -72,19 +74,59 @@ include '../template/header.php';
                             <th scope="col">Especialidade</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Avaliação</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">Victor Chinaglia</th>
-                            <td>Barbeiro</td>
-                            <td>(19) 999999-9999</td>
-                            <td>chinaglia@gmail.com</td>
-                            <td>⭐⭐⭐⭐⭐</td>
-                            <td>Ativado</td>
-                        </tr>
+
+
+                        <?php
+                        foreach ($listaProfissionais as $profissionais) {
+                            $esta_ativo = $profissionais['ativo'] == 0;
+
+                            $status_text = $esta_ativo ? 'Ativo' : 'Desativado';
+
+                            $status_class = $esta_ativo ? 'bg-success badge bg-opacity-50  fw-semibold text-success-emphasis' : 'bg-danger badge bg-opacity-50';
+                        ?>
+                            <tr>
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <?php
+                                        $caminho_foto = $profissionais['foto_perfil'];
+                                        $nome_profissional = $profissionais['nome'];
+                                        ?>
+
+                                        <img
+                                            src="<?= $caminho_foto ?>"
+                                            alt="Foto de Perfil de <?= $nome_profissional ?>"
+                                            class="img-fluid rounded-circle me-3"
+                                            style="width: 50px; height: 50px; object-fit: cover;">
+
+                                        <div class="d-flex flex-column">
+                                            <span class="fw-bold text-dark">
+                                                <?= $nome_profissional ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td><?= $profissionais['especialidade'] ?></td>
+                                <td><?= $profissionais['telefone'] ?></td>
+                                <td><?= $profissionais['email'] ?></td>
+
+                                <td>
+                                    <span class="text-center <?= $status_class ?> fs-6" for="">
+                                        <?= $status_text ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger"></button>
+                                    <button class="btn btn-warning"></button>
+                                    <button class="btn btn-primary"></button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                     </tbody>
                 </table>
             </div>
@@ -92,7 +134,7 @@ include '../template/header.php';
     </section>
 
 
-    <?php include('../template/modal_cadastro.php')?>
+    <?php include('../template/modal_cadastro.php') ?>
 
 </main>
 <script src="https://unpkg.com/imask"></script>

@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formCadastroProfissional" action="../controller/ProfissionalController.php" method="POST">
+                <form id="formCadastroProfissional" action="../controller/ProfissionalController.php" method="POST" enctype="multipart/form-data">
                     <div class="row mb-2">
                         <div class="col-12 col-md-4">
                             <div class="conteudo-img mb-3 w-100" id="colunaFoto">
@@ -21,7 +21,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="arquivoFotoProfissional" class="form-label">Foto do profissional</label>
-                                <input type="file" class="form-control" id="arquivoFotoProfissional" name="arquivoFotoProfissional">
+                                <input type="file" accept="image/*" class="form-control" id="arquivoFotoProfissional" name="arquivoFotoProfissional">
                             </div>
                             <div class="mb-3">
                                 <label for="txtNomeProfissional" class="form-label">Nome</label>

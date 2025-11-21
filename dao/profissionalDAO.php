@@ -1,7 +1,7 @@
 <?php
 
-require_once './config/conexao.php';
-include './model/Profissional.php';
+require_once('../config/conexao.php');
+include '../model/Profissional.php';
 
 class profissionalDAO{
 
@@ -16,7 +16,7 @@ class profissionalDAO{
         $this->conn = $conexao->getConnection();
     }
 
-    public function inseririProfissional(Profissional $profissional){
+    public function inserirProfissional(Profissional $profissional){
 
         $sqlInserir = "INSERT INTO profissionais (nome, especialidade, telefone, email, foto_perfil, cpf, ativo)
             VALUE (:nome, :especialidade, :telefone, :email, :foto_perfil, :cpf, :ativo)";
@@ -32,6 +32,21 @@ class profissionalDAO{
             ':ativo' => profissionalDAO::PROFISSIONAL_ATIVADO
         ]);
 
+        if($dadosProfissionais->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function listarProfissionais(){
+        $sqlLista = "SELECT * FROM profissionais";
+
+        $dadosListados = $this->conn->prepare($sqlLista);
+        $dadosListados->execute();
+
+        $listaProfissionais = $dadosListados->fetchAll();
+        return $listaProfissionais;
     }
 
 }
