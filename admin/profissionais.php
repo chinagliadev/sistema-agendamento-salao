@@ -120,9 +120,31 @@ $listaProfissionais = $profissionais->listarProfissionais();
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger"></button>
-                                    <button class="btn btn-warning"></button>
-                                    <button class="btn btn-primary"></button>
+                                    <button class="btn btn-danger"
+                                        data-bs-toggle="modal" data-bs-target="#modalDesativarProfissional"
+                                        data-id="<?= $profissionais['id_profissional'] ?>"
+                                        data-nome="<?= $profissionais['nome'] ?>"
+                                        data-especialidade="<?= $profissionais['especialidade'] ?>"
+                                        data-telefone="<?= $profissionais['telefone'] ?>"
+                                        data-email="<?= $profissionais['email'] ?>"
+                                        data-cpf="<?= $profissionais['cpf']?>"
+                                        data-foto="<?= $profissionais['foto_perfil']?>"
+                                        data-ativo="<?= $profissionais['ativo']?>"
+                                        >
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <button class="btn btn-warning"
+                                        data-bs-toggle="modal" data-bs-target="#modalEditarProfissional"
+                                        data-id="<?= $profissionais['id_profissional'] ?>"
+                                        data-nome="<?= $profissionais['nome'] ?>"
+                                        data-especialidade="<?= $profissionais['especialidade'] ?>"
+                                        data-telefone="<?= $profissionais['telefone'] ?>"
+                                        data-email="<?= $profissionais['email'] ?>"
+                                        data-cpf="<?= $profissionais['cpf']?>"
+                                        data-foto="<?= $profissionais['foto_perfil']?>"
+                                        data-ativo="<?= $profissionais['ativo']?>"
+                                    ><i class="bi bi-pen text-white"></i></button>
+                                    <button class="btn btn-primary"><i class="bi bi-eye"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -135,6 +157,8 @@ $listaProfissionais = $profissionais->listarProfissionais();
 
 
     <?php include('../template/modal_cadastro.php') ?>
+    <?php include('../template/modal-profissional/desativar_profissional.php') ?>
+    <?php include('../template/modal-profissional/editar_profissional.php') ?>
 
 </main>
 <script src="https://unpkg.com/imask"></script>
