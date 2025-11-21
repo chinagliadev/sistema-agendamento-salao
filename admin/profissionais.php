@@ -95,7 +95,9 @@ include '../template/header.php';
     <?php include('../template/modal_cadastro.php')?>
 
 </main>
-
+<script src="https://unpkg.com/imask"></script>
+<script src="../asset/js/validar-cadastro-modal.js"></script>
+<script src="../asset/js/menu-lateral.js"></script>
 <script>
     const btnMenu = document.getElementById('btn-menu');
     const menu = document.querySelector('.menu_lateral');
@@ -106,7 +108,7 @@ include '../template/header.php';
         body.classList.toggle('menu-aberto');
     });
 </script>
-<script src="../asset/js/menu-lateral.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
