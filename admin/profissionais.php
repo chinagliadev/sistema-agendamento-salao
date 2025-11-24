@@ -161,6 +161,7 @@ $listaProfissionais = $profissionais->listarProfissionais();
     <?php include('../template/modal-profissional/editar_profissional.php') ?>
 
 </main>
+<script src="../asset/js/profissionais.js"></script>
 <script src="https://unpkg.com/imask"></script>
 <script src="../asset/js/validar-cadastro-modal.js"></script>
 <script src="../asset/js/menu-lateral.js"></script>

@@ -3,7 +3,8 @@
 require_once('../config/conexao.php');
 include '../model/Profissional.php';
 
-class profissionalDAO{
+class profissionalDAO
+{
 
     private $conn;
 
@@ -16,11 +17,12 @@ class profissionalDAO{
         $this->conn = $conexao->getConnection();
     }
 
-    public function inserirProfissional(Profissional $profissional){
+    public function inserirProfissional(Profissional $profissional)
+    {
 
         $sqlInserir = "INSERT INTO profissionais (nome, especialidade, telefone, email, foto_perfil, cpf, ativo)
             VALUE (:nome, :especialidade, :telefone, :email, :foto_perfil, :cpf, :ativo)";
-        
+
         $dadosProfissionais = $this->conn->prepare($sqlInserir);
         $dadosProfissionais->execute([
             ':nome' => $profissional->getNome(),
@@ -32,14 +34,15 @@ class profissionalDAO{
             ':ativo' => profissionalDAO::PROFISSIONAL_ATIVADO
         ]);
 
-        if($dadosProfissionais->rowCount() > 0){
+        if ($dadosProfissionais->rowCount() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function listarProfissionais(){
+    public function listarProfissionais()
+    {
         $sqlLista = "SELECT * FROM profissionais";
 
         $dadosListados = $this->conn->prepare($sqlLista);
@@ -49,6 +52,18 @@ class profissionalDAO{
         return $listaProfissionais;
     }
 
-}
+    public function desativarProfissional($id)
+    {
 
-?>
+        $sqlDesativar = "UPDATE profissionais SET ativo = 0 WHERE id_profissional = :id";
+
+        $dadosDesativado = $this->conn->prepare($sqlDesativar);
+        $dadosDesativado->execute(
+            [
+                ':id' => $id
+            ]
+        );
+
+        return $dadosDesativado->rowCount();
+    }
+}
