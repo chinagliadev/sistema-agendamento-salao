@@ -1,7 +1,7 @@
 <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="modalDesativarProfissional" tabindex="-1" aria-labelledby="modalDesativarLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         
-        <form action="../controller/profissionais/desativar_profissionais.php" method="POST">
+        <form action="../controller/gerenciar_profissionais.php" method="POST">
             <div class="modal-content">
                 
                 <div class="modal-header border-0">
@@ -11,7 +11,7 @@
                 
                 <div class="modal-body text-center p-4"> 
                     <input type="hidden" name="id_profissional" id="inputIdProfissional">
-                    
+                    <input type="hidden" name="acaoProfissional" id="acaoProfissional">
                     <div class="mb-4 mx-auto p-3 bg-danger-subtle rounded-circle" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-trash-fill text-danger fs-1"></i>
                     </div>
