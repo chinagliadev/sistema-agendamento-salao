@@ -111,7 +111,39 @@ class profissionalDAO
     {
         $sqlFoto = "SELECT foto_perfil FROM profissionais WHERE id_profissional = :id";
         $dadosFotos = $this->conn->prepare($sqlFoto);
-        $dadosFotos->execute([':id'=>$id]);
+        $dadosFotos->execute([':id' => $id]);
         return $dadosFotos->fetchColumn();
+    }
+
+    public function filtrarStatusProfissional(string $tipo = 'todos'): array
+    {
+        $status_valor = match ($tipo) {
+            'ativo'    => self::PROFISSIONAL_ATIVADO,
+            'desativo' => self::PROFISSIONAL_DESATIVADO,
+            'todos'    => null,
+            default    => false,
+        };
+
+        if ($status_valor === false) {
+            return [];
+        }
+
+        $sqlFiltrarStatus = "SELECT * FROM profissionais";
+        $params = [];
+
+        if ($status_valor !== null) {
+            $sqlFiltrarStatus .= " WHERE ativo = :status";
+            $params[':status'] = $status_valor;
+        }
+
+        try {
+            $dadosFiltrados = $this->conn->prepare($sqlFiltrarStatus);
+            $dadosFiltrados->execute($params);
+
+            return $dadosFiltrados->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            error_log("Erro ao filtrar status: " . $e->getMessage());
+            return [];
+        }
     }
 }

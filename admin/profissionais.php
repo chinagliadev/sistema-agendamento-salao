@@ -3,8 +3,15 @@ require_once '../config/autenticar.php';
 include '../template/header.php';
 require_once __DIR__ . '/../dao/ProfissionalDAO.php';
 
+if (isset($_GET['status']) && !empty($_GET['status'])) {
+    $status = $_GET['status'];
+} else {
+    $status = 'todos';
+}
+
 $profissionais = new ProfissionalDAO();
-$listaProfissionais = $profissionais->listarProfissionais();
+
+$listaProfissionais = $profissionais->filtrarStatusProfissional($status);
 
 ?>
 <main class="d-flex">
@@ -38,17 +45,28 @@ $listaProfissionais = $profissionais->listarProfissionais();
 
                     <div class="col-12 col-md-6 d-flex justify-content-end align-items-center gap-2">
 
-                        <div class="dropdown">
+                        <div class="dropdown-center">
                             <a class="btn btn-dark dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-filter"></i>
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                data-bs-auto-close="false"> <i class="bi bi-filter"></i>
                                 Filtrar Profissionais
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-scissors"></i> Especialidade</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-star-fill text-warning"></i> Avaliação</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle-fill text-success"></i> Ativo</a></li>
+                                <li>
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Status
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="./profissionais.php?status=todos"><i class="bi bi-people-fill"></i> Todos</a></li>
+                                            <li><a class="dropdown-item" href="./profissionais.php?status=ativo"><i class="bi bi-check-circle-fill text-success"></i> Ativos</a></li>
+                                            <li><a class="dropdown-item" href="./profissionais.php?status=desativo"><i class="bi bi-x-circle-fill text-danger"></i> Desativos</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
 
@@ -164,10 +182,14 @@ $listaProfissionais = $profissionais->listarProfissionais();
     <?php include('../template/modal-profissional/editar_profissional.php') ?>
 
 </main>
-<script src="../asset/js/profissionais.js"></script>
+
 <script src="https://unpkg.com/imask"></script>
+<script src="../asset/js/validar-editar-profissional.js"></script>
+<script src="../asset/js/profissionais.js"></script>
 <script src="../asset/js/validar-cadastro-modal.js"></script>
 <script src="../asset/js/menu-lateral.js"></script>
+
+
 <script>
     const btnMenu = document.getElementById('btn-menu');
     const menu = document.querySelector('.menu_lateral');
