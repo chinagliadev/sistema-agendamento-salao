@@ -46,7 +46,7 @@ function configurarModalEditar(elementoModal) {
         const emailProfissional = button.getAttribute('data-email');
         const cpfProfissional = button.getAttribute('data-cpf');
         const fotoProfissional = button.getAttribute('data-foto');
-
+        
         const inputIdHidden = document.getElementById('id_profissional');
         const inputAcaoHidden = document.getElementById('acaoProfissional');
 

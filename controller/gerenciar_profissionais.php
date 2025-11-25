@@ -56,19 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['txtEmailProfissionalEditar'];
             $especialidade = $_POST['txtEspecialidadeProfissionalEditar'];
 
-  
-            $novaFoto = "";
 
-            if (!empty($_FILES['arquivoFotoProfissionalEditar']['name'])) {
+            $arquivoFoto = $_FILES['arquivoFotoProfissionalEditar'];
+            $nomeArquivoFoto = $arquivoFoto['name'];
 
-                $nomeArquivo = uniqid() . "_" . $_FILES['arquivoFotoProfissionalEditar']['name'];
-                $destino = "../uploads/" . $nomeArquivo;
+            $diretorioDestino = '../asset/uploads/foto_profissionais/';
+            $caminhoCompleto = $diretorioDestino . $nomeArquivoFoto;
 
-                if (move_uploaded_file($_FILES['arquivoFotoProfissionalEditar']['tmp_name'], $destino)) {
-                    $novaFoto = $nomeArquivo;
-                }
-            } else {
-                $novaFoto = $profissionalDAO->buscarFotoPorId($id);
+
+            if (!move_uploaded_file($arquivoFoto['tmp_name'], $caminhoCompleto)) {
+                header('Location: ../admin/profissionais.php?error=upload_falhou');
+                exit;
             }
 
             $profissional = new Profissional(
@@ -77,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $telefone,
                 $email,
                 $especialidade,
-                $novaFoto,
+                $caminhoCompleto,
             );
 
             $linhasAfetadas = $profissionalDAO->editarProfissional($profissional, $id);
