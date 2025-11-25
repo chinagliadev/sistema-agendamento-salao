@@ -107,13 +107,20 @@ class profissionalDAO
         return $dadosEditar->rowCount();
     }
 
-    public function buscarFotoPorId($id)
+    public function buscarPorId($id)
     {
-        $sqlFoto = "SELECT foto_perfil FROM profissionais WHERE id_profissional = :id";
-        $dadosFotos = $this->conn->prepare($sqlFoto);
-        $dadosFotos->execute([':id' => $id]);
-        return $dadosFotos->fetchColumn();
+        try {
+            $sql = "SELECT * FROM profissionais WHERE id_profissional = :id LIMIT 1";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
     }
+
 
     public function filtrarStatusProfissional(string $tipo): array
     {
@@ -147,5 +154,45 @@ class profissionalDAO
         }
     }
 
-    
+    public function pesquisarProfissionais($pesquisa)
+    {
+        $sql = "SELECT * FROM profissionais
+            WHERE nome LIKE :pesq
+               OR email LIKE :pesq
+               OR telefone LIKE :pesq
+               OR cpf LIKE :pesq";
+
+        $stmt = $this->conn->prepare($sql);
+        $like = "%$pesquisa%";
+        $stmt->bindParam(':pesq', $like, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function qtdProfissionaisAtivos()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM profissionais WHERE ativo = :status";
+
+        $dadosProfissionais = $this->conn->prepare($sql);
+        $dadosProfissionais->execute(
+            ['status' => self::PROFISSIONAL_ATIVADO]
+        );
+
+        $resultado = $dadosProfissionais->fetch(PDO::FETCH_ASSOC);
+
+        return $resultado['total'];
+    }
+
+    public function qtdProfissionaisDesativados()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM profissionais WHERE ativo = :status";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['status'=> self::PROFISSIONAL_DESATIVADO]);
+
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $resultado['total'];
+    }
 }

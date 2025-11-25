@@ -2,25 +2,25 @@ function configurarModal(elementoModal, nomeElementoId, inputElementoId, inputAc
     if (!elementoModal) {
         return;
     }
-    
+
     const nomeElement = document.getElementById(nomeElementoId);
     const inputElement = document.getElementById(inputElementoId);
-    const inputAcaoElement = document.getElementById(inputAcaoId); 
+    const inputAcaoElement = document.getElementById(inputAcaoId);
 
-    if (!nomeElement || !inputElement || !inputAcaoElement) { 
+    if (!nomeElement || !inputElement || !inputAcaoElement) {
         console.error(`Um ou mais elementos necessários para o modal ${elementoModal.id} não foram encontrados.`);
         return;
     }
 
     elementoModal.addEventListener('show.bs.modal', event => {
         const button = event.relatedTarget;
-        
+
         nomeElement.textContent = button.getAttribute('data-nome');
         const idProfissional = button.getAttribute('data-id');
-        const acaoElemento = button.getAttribute('data-acao'); 
+        const acaoElemento = button.getAttribute('data-acao');
 
         inputElement.value = idProfissional;
-        inputAcaoElement.value = acaoElemento; 
+        inputAcaoElement.value = acaoElemento;
     });
 }
 
@@ -46,7 +46,7 @@ function configurarModalEditar(elementoModal) {
         const emailProfissional = button.getAttribute('data-email');
         const cpfProfissional = button.getAttribute('data-cpf');
         const fotoProfissional = button.getAttribute('data-foto');
-        
+
         const inputIdHidden = document.getElementById('id_profissional');
         const inputAcaoHidden = document.getElementById('acaoProfissional');
 
@@ -101,20 +101,44 @@ function configurarPreviewFotoEditar() {
 
         reader.onload = e => {
             imgPreview.src = e.target.result;
-            imgPreview.classList.remove('d-none'); 
-            textoPreview.classList.add('d-none');    
+            imgPreview.classList.remove('d-none');
+            textoPreview.classList.add('d-none');
         };
 
         reader.readAsDataURL(arquivo);
     });
 
     modalEditar.addEventListener('hidden.bs.modal', () => {
-        inputFoto.value = "";              
-        imgPreview.src = "";               
-        imgPreview.classList.add('d-none'); 
-        textoPreview.classList.remove('d-none'); 
-        
+        inputFoto.value = "";
+        imgPreview.src = "";
+        imgPreview.classList.add('d-none');
+        textoPreview.classList.remove('d-none');
+
     });
 }
 
 configurarPreviewFotoEditar();
+
+function configurarModalDetalhes() {
+    const modalDetalhes = document.getElementById('modalDetalhesProfissional')
+
+    modalDetalhes.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+
+        const nomeProfissional = button.getAttribute('data-nome');
+        const especialidadeProfissional = button.getAttribute('data-especialidade');
+        const telefoneProfissional = button.getAttribute('data-telefone');
+        const emailProfissional = button.getAttribute('data-email');
+        const cpfProfissional = button.getAttribute('data-cpf');
+        const fotoProfissional = button.getAttribute('data-foto');
+
+        document.getElementById('campo_nome').textContent = nomeProfissional;
+        document.getElementById('campo_especialidade').textContent = especialidadeProfissional;
+        document.getElementById('campo_telefone').textContent = telefoneProfissional;
+        document.getElementById('campo_email').textContent = emailProfissional;
+        document.getElementById('campo_cpf').textContent = cpfProfissional;
+
+    })
+}
+
+configurarModalDetalhes()
