@@ -24,7 +24,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $email = $_POST['txtEmail'];
     $senha = password_hash($_POST['txtSenha'], PASSWORD_DEFAULT);
     $telefone = $_POST['txtTelefone'];
-    $nivel = 'admin';
 
     $usuario = new Usuario(
         $nomeCompleto,

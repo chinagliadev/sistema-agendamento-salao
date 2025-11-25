@@ -1,16 +1,12 @@
 async function carregarProfissionais() {
-    
-    fetch('../api/profissionais/listar_profissionais.php')
-        .then(response => response.json()) 
-        .then(profissionais => {
-            console.log("Dados carregados com sucesso:", profissionais);
-            if (profissionais.length > 0) {
-                console.log("Primeiro profissional:", profissionais[0].nome); 
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao carregar os profissionais:', error);
-        });
+    try {
+        const response = await fetch('../api/profissionais/listar_profissionais.php');
+        const dados = await response.json();
+        return dados; 
+    } catch (error) {
+        console.error('Erro ao carregar os profissionais:', error);
+        return []; 
+    }
 }
 
 carregarProfissionais();

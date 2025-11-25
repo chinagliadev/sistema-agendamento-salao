@@ -1,7 +1,7 @@
 <?php
 
-require_once('../config/conexao.php');
-include '../model/Profissional.php';
+require_once __DIR__ . '/../config/conexao.php';
+include_once __DIR__ . '/../model/Profissional.php';
 
 class profissionalDAO
 {
