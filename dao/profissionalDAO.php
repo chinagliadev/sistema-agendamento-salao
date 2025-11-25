@@ -115,7 +115,7 @@ class profissionalDAO
         return $dadosFotos->fetchColumn();
     }
 
-    public function filtrarStatusProfissional(string $tipo = 'todos'): array
+    public function filtrarStatusProfissional(string $tipo): array
     {
         $status_valor = match ($tipo) {
             'ativo'    => self::PROFISSIONAL_ATIVADO,
@@ -146,4 +146,6 @@ class profissionalDAO
             return [];
         }
     }
+
+    
 }

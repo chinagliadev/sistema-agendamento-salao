@@ -3,15 +3,8 @@ require_once '../config/autenticar.php';
 include '../template/header.php';
 require_once __DIR__ . '/../dao/ProfissionalDAO.php';
 
-if (isset($_GET['status']) && !empty($_GET['status'])) {
-    $status = $_GET['status'];
-} else {
-    $status = 'todos';
-}
-
 $profissionais = new ProfissionalDAO();
-
-$listaProfissionais = $profissionais->filtrarStatusProfissional($status);
+$listaProfissionais = $profissionais->listarProfissionais();
 
 ?>
 <main class="d-flex">
@@ -61,9 +54,9 @@ $listaProfissionais = $profissionais->filtrarStatusProfissional($status);
                                             Status
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="./profissionais.php?status=todos"><i class="bi bi-people-fill"></i> Todos</a></li>
-                                            <li><a class="dropdown-item" href="./profissionais.php?status=ativo"><i class="bi bi-check-circle-fill text-success"></i> Ativos</a></li>
-                                            <li><a class="dropdown-item" href="./profissionais.php?status=desativo"><i class="bi bi-x-circle-fill text-danger"></i> Desativos</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-people-fill"></i> Todos</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle-fill text-success"></i> Ativos</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-x-circle-fill text-danger"></i> Desativos</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -183,9 +176,9 @@ $listaProfissionais = $profissionais->filtrarStatusProfissional($status);
 
 </main>
 
+<script src="../asset/js/profissionais.js"></script>
 <script src="https://unpkg.com/imask"></script>
 <script src="../asset/js/validar-editar-profissional.js"></script>
-<script src="../asset/js/profissionais.js"></script>
 <script src="../asset/js/validar-cadastro-modal.js"></script>
 <script src="../asset/js/menu-lateral.js"></script>
 
