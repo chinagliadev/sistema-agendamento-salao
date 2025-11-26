@@ -9,30 +9,55 @@ async function carregarProfissionais() {
     }
 }
 
-carregarProfissionais();
+async function contarProfissionaisDesativados() {
+    const dados = await carregarProfissionais();
 
-const ctx = document.getElementById('myChart');
+    const profissionaisDesativados = dados.filter(profissional => profissional.ativo === '1');
 
-const chartData = {
-    labels: [
-        'Ativados',
-        'Desativados',
-    ],
-    datasets: [{
-        label: 'Profissionais',
-        data: [10, 20],
+    return profissionaisDesativados.length;
+}
 
-        backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgba(86, 255, 103, 1)',
-        ]
-    }]
-};
+async function contarProfissionaisAtivos() {
+    const dados = await carregarProfissionais();
 
-new Chart(ctx, {
-    type: 'doughnut',
-    data: chartData,
-    options: {
-        responsive: true
-    }
-});
+    const profissionaisAtivos = dados.filter(profissional => profissional.ativo === '0');
+
+    return profissionaisAtivos.length;
+}
+
+async function criarGraficoProfissionais() {
+    const qtdProfissionaisDesativados = await contarProfissionaisDesativados();
+    
+    const qtdProfissionaisAtivos = await contarProfissionaisAtivos(); 
+
+    console.log(`Profissionais Ativos (Fixo): ${qtdProfissionaisAtivos}`);
+    console.log(`Profissionais Desativados (API): ${qtdProfissionaisDesativados}`);
+
+    const ctx = document.getElementById('myChart');
+
+    const chartData = {
+        labels: [
+            'Ativados',
+            'Desativados', 
+        ],
+        datasets: [{
+            label: 'Profissionais',
+            data: [qtdProfissionaisDesativados, qtdProfissionaisAtivos], 
+
+            backgroundColor: [
+                'rgb(255, 99, 132)',     
+                'rgba(86, 255, 103, 1)', 
+            ]
+        }]
+    };
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: chartData,
+        options: {
+            responsive: true
+        }
+    });
+}
+
+criarGraficoProfissionais();
