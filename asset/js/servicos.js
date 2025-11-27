@@ -195,12 +195,12 @@ async function listarServico() {
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-3 mb-4">
                     <div class="card h-100">
-                        <img src="${servico.foto_servico}" class="card-img-top p-1" alt="Foto do Serviço ${servico.nome}" style="height: 200px; object-fit: cover;">
+                        <img src="${servico.foto_servico}" class="card-img-top p-1" alt="Foto do Serviço ${servico.nome}" style="height: 200px; object-fit: cover; object-position: center;">
                         <div class="card-body">
                             <h5 class="card-title">${servico.nome}</h5>
                             <p class="card-text">${servico.descricao}</p>
                             <p class="text-primary fw-bold">R$ ${parseFloat(servico.preco).toFixed(2).replace('.', ',')}</p>
-                            <a href="#" class="btn btn-primary">Detalhes</a>
+                            <a href="#" class="btn btn-dark w-100">Detalhes</a>
                         </div>
                     </div>
                 </div>
