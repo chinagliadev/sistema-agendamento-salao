@@ -88,32 +88,32 @@ function configurarPreviewFotoEditar() {
     const imgPreview = document.getElementById('preVizualizarImagemEditar');
     const textoPreview = document.getElementById('textoPreVizualizacaoEditar');
     const modalEditar = document.getElementById('modalEditarProfissional');
-
+    
     if (!inputFoto || !imgPreview || !textoPreview || !modalEditar) {
         return;
     }
-
+    
     inputFoto.addEventListener('change', () => {
         const arquivo = inputFoto.files[0];
         if (!arquivo) return;
-
+        
         const reader = new FileReader();
-
+        
         reader.onload = e => {
             imgPreview.src = e.target.result;
             imgPreview.classList.remove('d-none');
             textoPreview.classList.add('d-none');
         };
-
+        
         reader.readAsDataURL(arquivo);
     });
-
+    
     modalEditar.addEventListener('hidden.bs.modal', () => {
         inputFoto.value = "";
         imgPreview.src = "";
         imgPreview.classList.add('d-none');
         textoPreview.classList.remove('d-none');
-
+        
     });
 }
 
@@ -121,24 +121,38 @@ configurarPreviewFotoEditar();
 
 function configurarModalDetalhes() {
     const modalDetalhes = document.getElementById('modalDetalhesProfissional')
-
+    
     modalDetalhes.addEventListener('show.bs.modal', event => {
         const button = event.relatedTarget
-
+        
         const nomeProfissional = button.getAttribute('data-nome');
         const especialidadeProfissional = button.getAttribute('data-especialidade');
         const telefoneProfissional = button.getAttribute('data-telefone');
         const emailProfissional = button.getAttribute('data-email');
         const cpfProfissional = button.getAttribute('data-cpf');
         const fotoProfissional = button.getAttribute('data-foto');
-
+        const textoPreview = document.getElementById('textoPreVizualizacaoDetalhes');
+        
         document.getElementById('campo_nome').textContent = nomeProfissional;
         document.getElementById('campo_especialidade').textContent = especialidadeProfissional;
         document.getElementById('campo_telefone').textContent = telefoneProfissional;
         document.getElementById('campo_email').textContent = emailProfissional;
         document.getElementById('campo_cpf').textContent = cpfProfissional;
 
+        const imgFoto = document.getElementById('preVizualizarImagemDetalhes'); 
+
+        if (imgFoto && fotoProfissional) {
+            imgFoto.src = fotoProfissional;
+            imgFoto.classList.remove('d-none'); 
+            textoPreview.classList.add('d-none')
+        } else if (imgFoto) {
+            imgFoto.src = '';
+            imgFoto.classList.add('d-none'); 
+        }
+
     })
 }
+
+configurarModalDetalhes()
 
 configurarModalDetalhes()

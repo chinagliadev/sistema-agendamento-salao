@@ -24,11 +24,13 @@
                         <div class="col-12 col-md-4">
                             <div class="conteudo-img mb-3 w-100" id="colunaFotoEditar">
                                 <div class="card" style="width: 220px; height: 220px;">
-                                    <div class="card-body bg-light p-0 d-flex justify-content-center align-items-center">
-                                        <img id="preVizualizarImagemEditar" src=""
+                                    <div class="card-body bg-light p-0 d-flex justify-content-center align-items-center"
+                                        style="height: 200px; width: 200px; overflow: hidden;">
+                                        <img id="preVizualizarImagemDetalhes" src=""
                                             class="img-fluid d-none"
                                             style="width: 100%; height: 100%; object-fit: cover;">
-                                        <h2 id="textoPreVizualizacaoEditar"
+
+                                        <h2 id="textoPreVizualizacaoDetalhes"
                                             class="text-center text-muted fs-5">Foto do Profissional</h2>
                                     </div>
                                 </div>

@@ -12,7 +12,7 @@ $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
 
-    <section class="sessao-dashboard bg-light w-100 p-2 d-flex flex-column gap-3">
+    <section class="sessao-dashboard bg-light w-100 p-4 d-flex flex-column gap-3">
         <header class="bg-white border p-2 rounded">
             <nav class="navbar">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -62,20 +62,6 @@ $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="card shadow p-2 w-100  card-dashboard">
-                            <div class="card-body">
-                                <p class="card-subtitle text-muted">
-                                    <i class="bi bi-person-workspace fs-4 text-muted"></i> Total de Profissionais Desativos
-                                </p>
-                                <h5 class="card-title fs-1 fw-bold"><?= $qtdProfissionaisDesativos ?></h5>
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
             </div>
         </section>
