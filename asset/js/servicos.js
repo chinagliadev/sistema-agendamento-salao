@@ -192,6 +192,7 @@ async function listarServico() {
     if (listaDeServicos && listaDeServicos.length > 0) {
         listaDeServicos.forEach(servico => {
 
+            console.log(servico.id_servico)
             const cardHTML = `
              <div class="col-12 col-md-6 col-lg-3 mb-4">
     <div class="card card-servico h-100">
@@ -201,17 +202,61 @@ async function listarServico() {
             <span>Preço</span>
             <p class="text-dark fw-semibold fs-5">R$ ${servico.preco}</p>
             
-            <a href="#" class="btn btn-primary w-100 mb-2">Detalhes</a> 
-            <a href="#" class="btn btn-warning w-100  mb-2">Editar</a>
-            <a href="#" class="btn btn-danger w-100">Excluir</a>
+            <button class="btn btn-primary w-100 mb-2">Detalhes</button> 
+            <button  
+                data-id='${servico.id_servico}'
+                data-nome='${servico.nome}'
+                data-preco='${servico.preco}'
+                data-descricaoServico='${servico.descricaoServico}'
+                data-foto_servico='${servico.foto_servico}'
+                class="btn btn-warning w-100 mb-2 btn-editar-servico">
+                Editar
+            </button>
+            <button
+                data-id='${servico.id_servico}'
+                class="btn btn-danger w-100 btn-excluir-servico"> 
+                Excluir
+            </button>
     </div>
 </div>
             `;
             listaCard.insertAdjacentHTML('beforeend', cardHTML);
         });
+
+        adicionarEventosExcluir()
+        adicionarEventoEditar()
     } else {
         listaCard.innerHTML = '<p class="text-center text-muted mt-5">Nenhum serviço disponível no momento.</p>';
         console.log("Nenhum serviço encontrado.");
     }
 }
 listarServico()
+
+const btnExcluir = document.getElementById('bnt_excluir_servico');
+
+function adicionarEventosExcluir() {
+    const botoesExcluir = document.querySelectorAll('.btn-excluir-servico');
+
+    botoesExcluir.forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            const idServico = event.currentTarget.getAttribute('data-id');
+            console.log(`Clicou no botão Excluir para o serviço ID: ${idServico}`);
+        });
+    });
+}
+
+function adicionarEventoEditar(){
+    const botoesEditar = document.querySelectorAll('.btn-editar-servico')
+
+    botoesEditar.forEach(btn=>{
+        btn.addEventListener('click', (event)=>{
+            const idEditar = event.currentTarget.getAttribute('data-id')
+            const nomeEditar = event.currentTarget.getAttribute('data-nome')
+            const precoEditar = event.currentTarget.getAttribute('data-preco')
+            const descricaoEditar = event.currentTarget.getAttribute('data-descricaoServico')
+            const fotoEditar = event.currentTarget.getAttribute('data-foto_servico')
+
+            
+        })
+    })
+}
