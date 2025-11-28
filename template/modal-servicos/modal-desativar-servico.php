@@ -10,27 +10,25 @@
                 </div>
                 
                 <div class="modal-body text-center p-4"> 
-                    <input type="hidden" name="id_profissional" id="inputIdProfissional">
-                    <input type="hidden" name="acaoProfissional" id="acaoProfissional">
+                    <input type="hidden" name="inputIdServico" id="inputIdServico">
+                    <input type="hidden" name="acaoServico" id="acaoServico">
                     <div class="mb-4 mx-auto p-3 bg-danger-subtle rounded-circle" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-trash-fill text-danger fs-1"></i>
                     </div>
                     
                     <div class="texto-aviso">
                         <p class="fs-5 fw-bold text-dark mb-1">
-                            Deseja realmente desativar o profissional 
+                            Deseja realmente desativar o servico ? 
                         </p>
-                        <span id="nomeProfissional" class="text-danger fw-bolder fs-6"></span>?
-                        
                         <p class="text-muted mt-3 mb-0 fs-6">
-                            Ao desativar, o acesso dele ao sistema será bloqueado e ele não aparecerá nas listagens de ativos.
+                            Ao desativar, o acesso dele ao sistema será desativado e ele não aparecerá nas listagens de desativos.
                         </p>
                     </div>
                 </div>
                 
                 <div class="modal-footer justify-content-center border-0 pt-0 pb-3">
                     <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger">Sim, Desativar Permanentemente</button>
+                    <button type="submit" class="btn btn-danger">Sim, Desativar</button>
                 </div>
                 
             </div>

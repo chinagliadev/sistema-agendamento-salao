@@ -1,5 +1,5 @@
 .card-servico {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     transform: translateY(0); 
     cursor: pointer;
     border-radius: 16px;
@@ -10,6 +10,6 @@
 }
 
 .card-servico:hover {
-    transform: translateY(-2px); 
+    transform: translateY(-4px); 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); 
 }

@@ -45,4 +45,8 @@ class ServicoDAO
 
         return $listaServico;
     }
+
+    public function desativarServico($id){
+        $sql = "UPDATE servicos SET ativo = :ativo WHERE id_servico = :id ";
+    }
 }

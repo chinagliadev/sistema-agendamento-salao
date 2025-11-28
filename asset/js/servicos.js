@@ -195,32 +195,32 @@ async function listarServico() {
             console.log(servico.id_servico)
             const cardHTML = `
              <div class="col-12 col-md-6 col-lg-3 mb-4">
-    <div class="card card-servico h-100">
-        <img src="${servico.foto_servico}" class="card-img-top p-2" alt="Foto do Serviço ${servico.nome}" style="height: 350px; object-fit: cover; object-position: center;">
-        <div class="card-body">
-            <h5 class="card-title fs-4">${servico.nome}</h5>
-            <span>Preço</span>
-            <p class="text-dark fw-semibold fs-5">R$ ${servico.preco}</p>
-            
-            <button class="btn btn-primary w-100 mb-2">Detalhes</button> 
-            <button  
-                data-id='${servico.id_servico}'
-                data-nome='${servico.nome}'
-                data-preco='${servico.preco}'
-                data-descricaoServico='${servico.descricaoServico}'
-                data-foto_servico='${servico.foto_servico}'
-                class="btn btn-warning w-100 mb-2 btn-editar-servico">
-                Editar
-            </button>
-            <button
-                data-bs-toggle="modal"
-                data-bs-target="#modalDesativarServico">
-                data-id='${servico.id_servico}'
-                class="btn btn-danger w-100 btn-excluir-servico"> 
-                Excluir
-            </button>
-    </div>
-</div>
+                <div class="card card-servico h-100">
+                    <img src="${servico.foto_servico}" class="card-img-top p-2" alt="Foto do Serviço ${servico.nome}" style="height: 350px; object-fit: cover; object-position: center;">
+                    <div class="card-body">
+                        <h5 class="card-title fs-4">${servico.nome}</h5>
+                        <span>Preço</span>
+                        <p class="text-dark fw-semibold fs-5">R$ ${servico.preco}</p>
+                        
+                        <button class="btn btn-primary w-100 mb-2">Detalhes</button> 
+                        <button  
+                            data-id='${servico.id_servico}'
+                            data-nome='${servico.nome}'
+                            data-preco='${servico.preco}'
+                            data-descricaoServico='${servico.descricaoServico}'
+                            data-foto_servico='${servico.foto_servico}'
+                            class="btn btn-warning w-100 mb-2 btn-editar-servico">
+                            Editar
+                        </button>
+                        <button
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalDesativarServico"
+                            data-id='${servico.id_servico}'
+                            class="btn btn-danger w-100 btn-excluir-servico"> 
+                            Excluir
+                        </button>
+                    </div>
+                </div>
             `;
             listaCard.insertAdjacentHTML('beforeend', cardHTML);
         });
