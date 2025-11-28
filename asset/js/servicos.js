@@ -213,6 +213,8 @@ async function listarServico() {
                 Editar
             </button>
             <button
+                data-bs-toggle="modal"
+                data-bs-target="#modalDesativarServico">
                 data-id='${servico.id_servico}'
                 class="btn btn-danger w-100 btn-excluir-servico"> 
                 Excluir

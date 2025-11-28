@@ -66,6 +66,7 @@ include '../template/header.php';
     </section>
 
 <?php include('../template/modal-servicos/cadastrar-servico.php') ?>
+<?php include('../template/modal-servicos/modal-desativar-servico.php') ?>
 
 </main>
 </main>
