@@ -175,3 +175,101 @@ function limparErros(form) {
     });
 }
 
+function configurarModalDesativar() {
+    const modalDesativar = document.getElementById('modalDesativarServico')
+
+    modalDesativar.addEventListener('show.bs.modal', event => {
+        const btn = event.relatedTarget
+
+        const idInputHidden = document.getElementById('inputIdServico')
+        const acaoInputHidden = document.getElementById('acaoServico')
+
+        const id = btn.getAttribute('data-id')
+
+        idInputHidden.value = id
+        acaoInputHidden.value = 'desativarServico'
+
+    })
+}
+
+function configurarModalAtivarServico() {
+    const modal = document.getElementById('modalAtivarServico')
+
+    if (modal === null) {
+        console.error("Erro: O elemento com ID 'modalAtivarServico' não foi encontrado.");
+        return;
+    }
+
+    modal.addEventListener('show.bs.modal', event => {
+        const btn = event.relatedTarget
+
+        const idServico = btn.getAttribute('data-id')
+
+        const idInputHidden = document.getElementById('inputIdServicoAtivar')
+        const acaoInputHidden = document.getElementById('acaoServicoAtivar')
+        
+        idInputHidden.value = idServico
+        acaoInputHidden.value = 'ativarServico'
+    })
+}
+
+function configurarModalEditarServico() {
+    const modalEditar = document.getElementById('modalEditarServico');
+    const form = modalEditar ? modalEditar.querySelector('form') : null;
+    const btnEditar = document.getElementById('btnEditarServico'); 
+
+    modalEditar.addEventListener('show.bs.modal', event => {
+        const btn = event.relatedTarget; 
+
+        const id = btn.getAttribute('data-id');
+        
+        const nome = btn.getAttribute('data-nome');
+        const preco = btn.getAttribute('data-preco');
+        const duracao = btn.getAttribute('data-duracao');
+        const descricao = btn.getAttribute('data-descricao');
+        const fotoUrl = btn.getAttribute('data-foto'); 
+
+        document.getElementById('txtNomeServicoEditar').value = nome;
+        document.getElementById('txtPrecoServicoEditar').value = preco;
+        document.getElementById('txtDuracaoServicoEditar').value = duracao;
+        document.getElementById('descricaoServicoEditar').value = descricao;
+        
+        const imgElement = document.getElementById('preVizualizarImagem');
+        const textElement = document.getElementById('textoPreVizualizacao');
+
+        if (fotoUrl) {
+            imgElement.src = fotoUrl;
+            imgElement.classList.remove('d-none');
+            textElement.classList.add('d-none');
+        } else {
+            imgElement.src = '';
+            imgElement.classList.add('d-none');
+            textElement.classList.remove('d-none');
+        }
+    });
+
+    btnEditar.addEventListener('click', function() {
+        if (validarFormularioEdicao()) {
+            form.submit(); 
+        }
+    });
+}
+
+function validarFormularioEdicao() {
+    let isValido = true;
+    
+    const nomeInput = document.getElementById('txtNomeServico');
+    const precoInput = document.getElementById('txtPrecoServico');
+    const duracaoInput = document.getElementById('txtDuracaoServico');
+    const descricaoInput = document.getElementById('descricaoServico');
+    
+    
+
+    return isValido;
+}
+
+
+configurarModalEditarServico();
+
+configurarModalAtivarServico()
+configurarModalDesativar()

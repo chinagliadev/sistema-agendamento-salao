@@ -154,5 +154,3 @@ function configurarModalDetalhes() {
 }
 
 configurarModalDetalhes()
-
-configurarModalDetalhes()

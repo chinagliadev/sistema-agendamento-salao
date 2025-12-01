@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../admin/servicos.php?error=campos_obrigatorios');
         exit;
     }
-
     
     $nome = $_POST['txtNomeServico'];
     $descricao = $_POST['descricaoServico'];
@@ -36,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../admin/servicos.php?error=upload_falhou');
         exit;
     }
-
     
     $servico = new Servico(
         $nome, 

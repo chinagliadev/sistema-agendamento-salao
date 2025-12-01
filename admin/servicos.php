@@ -76,7 +76,7 @@ $listaServico = $servico->listarServicos();
                     <tbody>
                         <?php foreach ($listaServico as $servico) {
 
-                            $esta_ativo = $servico['ativo'] == 1;
+                            $esta_ativo = $servico['ativo'] == 0;
 
                             $status_text = $esta_ativo ? 'Ativo' : 'Desativado';
                             $status_class = $esta_ativo
@@ -109,7 +109,8 @@ $listaServico = $servico->listarServicos();
                                         data-nome="<?= $servico['nome'] ?>"
                                         data-preco="<?= $servico['preco'] ?>"
                                         data-duracao="<?= $servico['duracao'] ?>"
-                                        data-descricao="<?= $servico['descricao'] ?>">
+                                        data-descricao="<?= $servico['descricao'] ?>"
+                                        data-foto="<?= $servico['foto_servico'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </button>
 
@@ -144,6 +145,8 @@ $listaServico = $servico->listarServicos();
 
     <?php include('../template/modal-servicos/cadastrar-servico.php') ?>
     <?php include('../template/modal-servicos/modal-desativar-servico.php') ?>
+    <?php include('../template/modal-servicos/modal-ativar-servico.php') ?>
+    <?php include('../template/modal-servicos/modal-editar-servico.php') ?>
 
 </main>
 </main>

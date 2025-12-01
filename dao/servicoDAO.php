@@ -8,8 +8,8 @@ class ServicoDAO
 
     private $conn;
 
-    CONST SERVICO_ATIVADO = 0;
-    CONST SERVICO_DESATIVADO = 1;
+    const SERVICO_ATIVADO = 0;
+    const SERVICO_DESATIVADO = 1;
 
     public function __construct()
     {
@@ -38,7 +38,8 @@ class ServicoDAO
         return $dadosServico->rowCount();
     }
 
-    public function listarServicos(): array{
+    public function listarServicos(): array
+    {
         $sql = "SELECT * FROM servicos";
 
         $dadosServico = $this->conn->prepare($sql);
@@ -49,7 +50,8 @@ class ServicoDAO
         return $listaServico;
     }
 
-    public function desativarServico($id){
+    public function desativarServico($id)
+    {
         $sql = "UPDATE servicos SET ativo = :ativo WHERE id_servico = :id ";
 
         $dadosServico = $this->conn->prepare($sql);
@@ -61,6 +63,22 @@ class ServicoDAO
             ]
         );
 
-         return $dadosServico->rowCount();
+        return $dadosServico->rowCount();
+    }
+
+    public function ativarServicos($id)
+    {
+        $sql = "UPDATE servicos SET ativo = :ativo WHERE id_servico = :id ";
+
+        $dadosServico = $this->conn->prepare($sql);
+
+        $dadosServico->execute(
+            [
+                ':ativo' => self::SERVICO_ATIVADO,
+                ':id' => $id
+            ]
+        );
+
+        return $dadosServico->rowCount();
     }
 }
