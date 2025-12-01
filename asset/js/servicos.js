@@ -213,60 +213,143 @@ function configurarModalAtivarServico() {
     })
 }
 
+const precoEditar = document.getElementById('txtPrecoServicoEditar');
+const precoMaskEditar = IMask(precoEditar, {
+    mask: 'R$ num',
+    lazy: false,
+    blocks: {
+        num: {
+            mask: Number,
+            thousandsSeparator: '.',
+            radix: ',',
+            mapToRadix: ['.'],
+            scale: 2,
+            min: 0
+        }
+    }
+});
+
+const duracaoEditar = document.getElementById('txtDuracaoServicoEditar');
+const duracaoMaskEditar = IMask(duracaoEditar, {
+    mask: '00:00'
+});
+
+
 function configurarModalEditarServico() {
     const modalEditar = document.getElementById('modalEditarServico');
     const form = modalEditar ? modalEditar.querySelector('form') : null;
-    const btnEditar = document.getElementById('btnEditarServico'); 
+    const btnEditar = document.getElementById('btnEditarServico');
+
+    const inputFoto = document.getElementById('arquivoFotoServicoEditar');
+    const previewImg = document.getElementById('preVizualizarImagemEditar');
+    const textoPreview = document.getElementById('textoPreVizualizacaoEditar');
 
     modalEditar.addEventListener('show.bs.modal', event => {
-        const btn = event.relatedTarget; 
+        const btn = event.relatedTarget;
 
         const id = btn.getAttribute('data-id');
-        
         const nome = btn.getAttribute('data-nome');
         const preco = btn.getAttribute('data-preco');
         const duracao = btn.getAttribute('data-duracao');
         const descricao = btn.getAttribute('data-descricao');
-        const fotoUrl = btn.getAttribute('data-foto'); 
+        const fotoUrl = btn.getAttribute('data-foto');
 
         document.getElementById('txtNomeServicoEditar').value = nome;
-        document.getElementById('txtPrecoServicoEditar').value = preco;
-        document.getElementById('txtDuracaoServicoEditar').value = duracao;
+        precoMaskEditar.value = preco;
+        duracaoMaskEditar.value = duracao;
         document.getElementById('descricaoServicoEditar').value = descricao;
-        
-        const imgElement = document.getElementById('preVizualizarImagem');
-        const textElement = document.getElementById('textoPreVizualizacao');
+
+        document.getElementById('inputIdEditarServico').value = id;
+        document.getElementById('acaoServicoEditar').value = 'editarServico';
 
         if (fotoUrl) {
-            imgElement.src = fotoUrl;
-            imgElement.classList.remove('d-none');
-            textElement.classList.add('d-none');
+            previewImg.src = fotoUrl;
+            previewImg.classList.remove('d-none');
+            textoPreview.classList.add('d-none');
         } else {
-            imgElement.src = '';
-            imgElement.classList.add('d-none');
-            textElement.classList.remove('d-none');
+            previewImg.src = '';
+            previewImg.classList.add('d-none');
+            textoPreview.classList.remove('d-none');
         }
+
+        inputFoto.value = '';
     });
 
-    btnEditar.addEventListener('click', function() {
+    inputFoto.addEventListener('change', () => {
+        const arquivo = inputFoto.files[0];
+        if (!arquivo) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            previewImg.src = e.target.result;
+            previewImg.classList.remove('d-none');
+            textoPreview.classList.add('d-none');
+        };
+        reader.readAsDataURL(arquivo);
+    });
+
+    modalEditar.addEventListener('hidden.bs.modal', () => {
+        previewImg.src = '';
+        previewImg.classList.add('d-none');
+        textoPreview.classList.remove('d-none');
+        inputFoto.value = '';
+
+        precoMaskEditar.value = '';
+        duracaoMaskEditar.value = '';
+
+        form.reset();
+    });
+
+    btnEditar.addEventListener('click', function () {
         if (validarFormularioEdicao()) {
-            form.submit(); 
+            form.submit();
         }
     });
 }
+
 
 function validarFormularioEdicao() {
     let isValido = true;
-    
-    const nomeInput = document.getElementById('txtNomeServico');
-    const precoInput = document.getElementById('txtPrecoServico');
-    const duracaoInput = document.getElementById('txtDuracaoServico');
-    const descricaoInput = document.getElementById('descricaoServico');
-    
-    
+
+    const nomeInput = document.getElementById('txtNomeServicoEditar');
+    const precoInput = document.getElementById('txtPrecoServicoEditar');
+    const duracaoInput = document.getElementById('txtDuracaoServicoEditar');
+    const descricaoInput = document.getElementById('descricaoServicoEditar');
+
+    limparErros(document.getElementById('formEditarServico'));
+
+    if (nomeInput.value.trim() === "") {
+        mostrarErro(nomeInput, "Informe o nome do serviço");
+        isValido = false;
+    }
+
+    const valorNumerico = precoInput.value
+        .replace('R$', '')
+        .replace(/\./g, '')
+        .replace(',', '.')
+        .trim();
+
+    if (isNaN(parseFloat(valorNumerico)) || parseFloat(valorNumerico) <= 0) {
+        mostrarErro(precoInput, "Preço inválido ou igual a zero");
+        isValido = false;
+    }
+
+    // Duraçãox
+    const regexDuracao = /^([0-9]{2}):([0-5][0-9])$/;
+    if (!regexDuracao.test(duracaoInput.value)) {
+        mostrarErro(duracaoInput, "Duração inválida (formato HH:MM)");
+        isValido = false;
+    } else {
+        const [h, m] = duracaoInput.value.split(':').map(Number);
+        if (h === 0 && m < 5) {
+            mostrarErro(duracaoInput, "Duração mínima de 5 minutos");
+            isValido = false;
+        }
+    }
 
     return isValido;
 }
+
 
 
 configurarModalEditarServico();

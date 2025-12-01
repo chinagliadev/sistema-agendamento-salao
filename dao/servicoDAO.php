@@ -81,4 +81,38 @@ class ServicoDAO
 
         return $dadosServico->rowCount();
     }
+
+    public function atualizarServico(Servico $servico, $id): int
+    {
+        $atualizarFoto = !empty($servico->getFotoServico());
+
+        $sql = "UPDATE servicos SET 
+                nome = :nome, 
+                descricao = :descricao,
+                preco = :preco,
+                duracao = :duracao";
+
+        if ($atualizarFoto) {
+            $sql .= ", foto_servico = :foto_servico";
+        }
+
+        $sql .= " WHERE id_servico = :id_servico";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $params = [
+            ':nome' => $servico->getNome(),
+            ':descricao' => $servico->getDescricao(),
+            ':preco' => $servico->getPreco(),
+            ':duracao' => $servico->getDuracao(),
+        ];
+
+        if ($atualizarFoto) {
+            $params[':foto_servico'] = $servico->getFotoServico();
+        }
+
+        $stmt->execute($params);
+
+        return $stmt->rowCount();
+    }
 }

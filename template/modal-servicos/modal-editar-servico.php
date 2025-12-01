@@ -5,57 +5,76 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-briefcase"></i> Editar Serviço</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
-                <form id="formCadastrarServico" action="../controller/ServicoController.php" method="POST" enctype="multipart/form-data">
+                <!-- FORMULÁRIO CORRIGIDO -->
+                <form id="formEditarServico" action="../controller/ServicoController.php" method="POST" enctype="multipart/form-data">
+
                     <div class="row mb-2">
+
+                        <!-- COLUNA FOTO -->
                         <div class="col-12 col-md-4">
                             <div class="conteudo-img mb-3 w-100" id="colunaFoto">
                                 <div class="card" style="width: 220px; height: 220px;">
                                     <div class="card-body bg-light p-0 d-flex justify-content-center align-items-center">
-                                        <img id="preVizualizarImagem" src="" class="img-fluid d-none" style="width: 100%; height: 100%; object-fit: cover;">
-                                        <h2 id="textoPreVizualizacao" class="text-center text-muted fs-5">Foto do Serviço</h2>
+                                        <img id="preVizualizarImagemEditar" src="" class="img-fluid d-none" style="width: 100%; height: 100%; object-fit: cover;">
+                                        <h2 id="textoPreVizualizacaoEditar" class="text-center text-muted fs-5">Foto do Serviço</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- COLUNA CAMPOS -->
                         <div class="col">
+
                             <div class="mb-3">
-                                <label for="arquivoFotoServico" class="form-label">Foto do Serviço</label>
-                                <input type="file" accept="image/*" class="form-control" 
-                                       id="arquivoFotoServico" name="arquivoFotoServico">
+                                <label for="arquivoFotoServicoEditar" class="form-label">Foto do Serviço</label>
+                                <!-- INPUT CORRIGIDO -->
+                                <input type="file" accept="image/*" class="form-control"
+                                       id="arquivoFotoServicoEditar" name="arquivoFotoServicoEditar">
                             </div>
+
+                            <input type="hidden" id="inputIdEditarServico" name="inputIdServico">
+                            <input type="hidden" id="acaoServicoEditar" name="acaoServico">
+
                             <div class="mb-3">
                                 <label for="txtNomeServicoEditar" class="form-label">Nome do Serviço</label>
-                                <input type="text" class="form-control" 
+                                <input type="text" class="form-control"
                                        id="txtNomeServicoEditar" name="txtNomeServicoEditar">
                                 <span class="mensagem-erro d-none text-danger"></span>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-12 col-md-6 mb-3">
-                                    <label for="txtPrecoServico" class="form-label">Preço</label>
-                                    <input type="text" class="form-control" 
+                                    <label for="txtPrecoServicoEditar" class="form-label">Preço</label>
+                                    <input type="text" class="form-control"
                                            id="txtPrecoServicoEditar" name="txtPrecoServicoEditar">
                                     <span class="mensagem-erro d-none text-danger"></span>
-                                    </div>
+                                </div>
+
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="txtDuracaoServicoEditar" class="form-label">Duração</label>
-                                    <input type="text" class="form-control" 
-                                           name="txtDuracaoServicoEditar" id="txtDuracaoServicoEditar">
+                                    <input type="text" class="form-control"
+                                           id="txtDuracaoServicoEditar" name="txtDuracaoServicoEditar">
                                     <span class="mensagem-erro d-none text-danger"></span>
-                                    </div>
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="descricaoServicoEditar" class="form-label">Descricao</label>
-                                    <textarea class="form-control" 
+                                    <label for="descricaoServicoEditar" class="form-label">Descrição</label>
+                                    <textarea class="form-control"
                                               id="descricaoServicoEditar" name="descricaoServicoEditar" rows="3"></textarea>
                                     <span class="mensagem-erro d-none text-danger"></span>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="btnFecharModal" data-bs-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-primary" id="btnEditarServico">Editar Serviço</button>
