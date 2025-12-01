@@ -1,7 +1,7 @@
 <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="modalDesativarServico" tabindex="-1" aria-labelledby="modalDesativarLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         
-        <form action="../controller/gerenciar_profissionais.php" method="POST">
+        <form action="../controller/gerenciar_servicos.php" method="POST">
             <div class="modal-content">
                 
                 <div class="modal-header border-0">

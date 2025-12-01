@@ -1,7 +1,11 @@
 <?php
 require_once '../config/autenticar.php';
 include '../template/header.php';
+require_once __DIR__ . '/../dao/servicoDAO.php';
 
+$servico = new ServicoDAO();
+
+$listaServico = $servico->listarServicos();
 
 ?>
 <main class="d-flex">
@@ -51,22 +55,95 @@ include '../template/header.php';
                             Cadastrar Serviço
                         </button>
 
+                    </div>
                 </div>
-            </div>
 
         </section>
 
-        <section class="sessao_servicos">
-            <div class="row" id="lista_cards">
-                
+        <section class="sessao_servicos bg-white border">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Serviço</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Duração</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($listaServico as $servico) {
+
+                            $esta_ativo = $servico['ativo'] == 1;
+
+                            $status_text = $esta_ativo ? 'Ativo' : 'Desativado';
+                            $status_class = $esta_ativo
+                                ? 'bg-success badge bg-opacity-50 fw-semibold text-success-emphasis'
+                                : 'bg-danger badge bg-opacity-50 text-danger-emphasis';
+
+                            $botao_editar = $esta_ativo ? '' : 'd-none';
+                            $acao_modal = $esta_ativo ? 'modalDesativarServico' : 'modalAtivarServico';
+                            $acao_class = $esta_ativo ? 'btn-danger' : 'btn-success';
+                            $acao_icone = $esta_ativo ? 'bi-trash' : 'bi-check-circle';
+
+                        ?>
+                            <tr>
+                                <td><?= $servico['nome'] ?></td>
+                                <td>R$ <?= number_format($servico['preco'], 2, ',', '.') ?></td>
+                                <td><?= $servico['duracao'] ?> min</td>
+                                <td><?= $servico['descricao'] ?></td>
+
+                                <td>
+                                    <span class="text-center <?= $status_class ?> fs-6">
+                                        <?= $status_text ?>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-warning text-white me-1 <?= $botao_editar ?>"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditarServico"
+                                        data-id="<?= $servico['id_servico'] ?>"
+                                        data-nome="<?= $servico['nome'] ?>"
+                                        data-preco="<?= $servico['preco'] ?>"
+                                        data-duracao="<?= $servico['duracao'] ?>"
+                                        data-descricao="<?= $servico['descricao'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+
+                                    <button class="btn <?= $acao_class ?>"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#<?= $acao_modal ?>"
+                                        data-id="<?= $servico['id_servico'] ?>"
+                                        data-nome="<?= $servico['nome'] ?>">
+                                        <i class="<?= $acao_icone ?>"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalDetalhesServico"
+                                        data-id="<?= $servico['id_servico'] ?>"
+                                        data-nome="<?= $servico['nome'] ?>"
+                                        data-preco="<?= $servico['preco'] ?>"
+                                        data-duracao="<?= $servico['duracao'] ?>"
+                                        data-descricao="<?= $servico['descricao'] ?>">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        
+
     </section>
 
-<?php include('../template/modal-servicos/cadastrar-servico.php') ?>
-<?php include('../template/modal-servicos/modal-desativar-servico.php') ?>
+    <?php include('../template/modal-servicos/cadastrar-servico.php') ?>
+    <?php include('../template/modal-servicos/modal-desativar-servico.php') ?>
 
 </main>
 </main>

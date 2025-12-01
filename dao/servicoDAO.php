@@ -8,6 +8,9 @@ class ServicoDAO
 
     private $conn;
 
+    CONST SERVICO_ATIVADO = 0;
+    CONST SERVICO_DESATIVADO = 1;
+
     public function __construct()
     {
         $conexao = new conexao();
@@ -48,5 +51,16 @@ class ServicoDAO
 
     public function desativarServico($id){
         $sql = "UPDATE servicos SET ativo = :ativo WHERE id_servico = :id ";
+
+        $dadosServico = $this->conn->prepare($sql);
+
+        $dadosServico->execute(
+            [
+                ':ativo' => self::SERVICO_DESATIVADO,
+                ':id' => $id
+            ]
+        );
+
+         return $dadosServico->rowCount();
     }
 }
