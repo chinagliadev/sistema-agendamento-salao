@@ -101,9 +101,6 @@ modalCadastrarServico.addEventListener('hidden.bs.modal', () => {
     }
 });
 
-
-
-
 function validarPreco(input) {
 
     const valorNumerico = input.value
@@ -255,7 +252,7 @@ function configurarModalEditarServico() {
         const fotoUrl = btn.getAttribute('data-foto');
 
         document.getElementById('txtNomeServicoEditar').value = nome;
-        precoMaskEditar.value = preco;
+        precoMaskEditar.unmaskedValue  = preco;
         duracaoMaskEditar.value = duracao;
         document.getElementById('descricaoServicoEditar').value = descricao;
 
@@ -294,7 +291,7 @@ function configurarModalEditarServico() {
         textoPreview.classList.remove('d-none');
         inputFoto.value = '';
 
-        precoMaskEditar.value = '';
+        precoMaskEditar.unmaskedValue = '';
         duracaoMaskEditar.value = '';
 
         form.reset();
@@ -334,7 +331,6 @@ function validarFormularioEdicao() {
         isValido = false;
     }
 
-    // Duraçãox
     const regexDuracao = /^([0-9]{2}):([0-5][0-9])$/;
     if (!regexDuracao.test(duracaoInput.value)) {
         mostrarErro(duracaoInput, "Duração inválida (formato HH:MM)");
@@ -350,7 +346,46 @@ function validarFormularioEdicao() {
     return isValido;
 }
 
+function configurarModalDetalhes() {
 
+    const modal = document.getElementById('modalDetalhesServico');
+
+    modal.addEventListener('show.bs.modal', event => {
+        const btn = event.relatedTarget;
+
+        const id      = btn.getAttribute('data-id');
+        const nome    = btn.getAttribute('data-nome');
+        const preco   = btn.getAttribute('data-preco');
+        const duracao = btn.getAttribute('data-duracao');
+        const desc    = btn.getAttribute('data-descricao');
+
+        const precoFormatado = Number(preco)
+            .toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        document.getElementById('campo_nome_servico_detalhes').innerText = nome;
+        document.getElementById('campo_preco_servico_detalhes').innerText = precoFormatado;
+        document.getElementById('campo_duracao_servico_detalhes').innerText = duracao;
+        document.getElementById('campo_descricao_servico_detalhes').innerText = desc;
+
+        const img = btn.getAttribute('data-foto');
+
+        const imgEl  = document.getElementById("preVizualizarImagemServicoDetalhes");
+        const textEl = document.getElementById("textoPreVizualizacaoServico");
+
+        if (img) {
+            imgEl.src = img;
+            imgEl.classList.remove("d-none");
+            textEl.classList.add("d-none");
+        } else {
+            imgEl.classList.add("d-none");
+            textEl.classList.remove("d-none");
+        }
+    });
+}
+
+
+
+configurarModalDetalhes();
 
 configurarModalEditarServico();
 

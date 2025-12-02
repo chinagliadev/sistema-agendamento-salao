@@ -82,15 +82,22 @@ class ServicoDAO
         return $dadosServico->rowCount();
     }
 
-    public function atualizarServico(Servico $servico, $id): int
-    {
-        $atualizarFoto = !empty($servico->getFotoServico());
+    public function atualizarServico(
+        int $id_servico,
+        string $nome,
+        string $descricao,
+        $preco,
+        string $duracao,
+        ?string $foto_servico,
+    ): int {
+
+        $atualizarFoto = !empty($foto_servico);
 
         $sql = "UPDATE servicos SET 
-                nome = :nome, 
-                descricao = :descricao,
-                preco = :preco,
-                duracao = :duracao";
+        nome = :nome, 
+        descricao = :descricao,
+        preco = :preco,
+        duracao = :duracao";
 
         if ($atualizarFoto) {
             $sql .= ", foto_servico = :foto_servico";
@@ -98,21 +105,22 @@ class ServicoDAO
 
         $sql .= " WHERE id_servico = :id_servico";
 
-        $stmt = $this->conn->prepare($sql);
+        $dadosServico = $this->conn->prepare($sql);
 
         $params = [
-            ':nome' => $servico->getNome(),
-            ':descricao' => $servico->getDescricao(),
-            ':preco' => $servico->getPreco(),
-            ':duracao' => $servico->getDuracao(),
+            ':id_servico' => $id_servico,
+            ':nome' => $nome,
+            ':descricao' => $descricao,
+            ':preco' => $preco,
+            ':duracao' => $duracao,
         ];
 
         if ($atualizarFoto) {
-            $params[':foto_servico'] = $servico->getFotoServico();
+            $params[':foto_servico'] = $foto_servico;
         }
 
-        $stmt->execute($params);
+        $dadosServico->execute($params);
 
-        return $stmt->rowCount();
+        return $dadosServico->rowCount();
     }
 }

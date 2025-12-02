@@ -7,11 +7,21 @@ echo 'arquivo gerenciar_servicos.php';
 
 var_dump($_POST);
 
+function limparPreco($valor)
+{
+    $valor = str_replace('R$', '', $valor);
+    $valor = str_replace(' ', '', $valor);
+    $valor = str_replace('.', '', $valor);
+    $valor = str_replace(',', '.', $valor);
+    return $valor;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['acaoServico'])) {
         header('Location: ../admin/servicos.php?error=acao_nao_informada');
         exit();
     }
+
 
     $acao = $_POST['acaoServico'];
     $servicoDAO = new ServicoDAO();
@@ -43,8 +53,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error_param = 'ativado_error';
             break;
 
+        case 'editarServico':
+
+            if (!isset($_POST['inputIdServico']) || empty($_POST['inputIdServico'])) {
+                header('Location: ../admin/servicos.php?error=id_nao_informado');
+                exit();
+            }
+
+            $id = (int)$_POST['inputIdServico'];
+
+            $nome = trim($_POST['txtNomeServicoEditar']);
+            $descricao = trim($_POST['descricaoServicoEditar']);
+            $preco = limparPreco($_POST['txtPrecoServicoEditar']);
+            $duracao = trim($_POST['txtDuracaoServicoEditar']);
+
+            $foto_servico = null; // padrão: não atualizar foto
+
+            if (isset($_FILES['arquivoFotoServicoEditar']) && $_FILES['arquivoFotoServicoEditar']['error'] === UPLOAD_ERR_OK) {
+
+                $diretorioDestino = '../asset/uploads/foto_servicos/';
+
+                $nomeArquivo = uniqid() . '_' . $_FILES['arquivoFotoServicoEditar']['name'];
+                $caminhoCompleto = $diretorioDestino . $nomeArquivo;
+
+                if (move_uploaded_file($_FILES['arquivoFotoServicoEditar']['tmp_name'], $caminhoCompleto)) {
+                    $foto_servico = $caminhoCompleto;
+                }
+            }
+
+            $linhasAfetadas = $servicoDAO->atualizarServico(
+                $id,
+                $nome,
+                $descricao,
+                $preco,
+                $duracao,
+                $foto_servico // pode ser null → não atualiza a foto
+            );
+
+            $success_param = 'editado';
+            $error_param = 'editado_error';
+
+            break;
+
+
         default:
-            // header('Location: ../admin/servicos.php?error=acao_invalida');
+            header('Location: ../admin/servicos.php?error=acao_invalida');
             exit();
     }
 

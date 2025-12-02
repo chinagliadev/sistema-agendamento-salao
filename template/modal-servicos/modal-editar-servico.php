@@ -7,12 +7,10 @@
             </div>
 
             <div class="modal-body">
-                <!-- FORMULÁRIO CORRIGIDO -->
-                <form id="formEditarServico" action="../controller/ServicoController.php" method="POST" enctype="multipart/form-data">
+                <form id="formEditarServico" action="../controller/gerenciar_servicos.php" method="POST" enctype="multipart/form-data">
 
                     <div class="row mb-2">
 
-                        <!-- COLUNA FOTO -->
                         <div class="col-12 col-md-4">
                             <div class="conteudo-img mb-3 w-100" id="colunaFoto">
                                 <div class="card" style="width: 220px; height: 220px;">
@@ -24,12 +22,10 @@
                             </div>
                         </div>
 
-                        <!-- COLUNA CAMPOS -->
                         <div class="col">
 
                             <div class="mb-3">
                                 <label for="arquivoFotoServicoEditar" class="form-label">Foto do Serviço</label>
-                                <!-- INPUT CORRIGIDO -->
                                 <input type="file" accept="image/*" class="form-control"
                                        id="arquivoFotoServicoEditar" name="arquivoFotoServicoEditar">
                             </div>

@@ -6,7 +6,6 @@ require_once __DIR__ . '/../dao/servicoDAO.php';
 $servico = new ServicoDAO();
 
 $listaServico = $servico->listarServicos();
-
 ?>
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
@@ -107,7 +106,7 @@ $listaServico = $servico->listarServicos();
                                         data-bs-target="#modalEditarServico"
                                         data-id="<?= $servico['id_servico'] ?>"
                                         data-nome="<?= $servico['nome'] ?>"
-                                        data-preco="<?= $servico['preco'] ?>"
+                                        data-preco="<?= number_format($servico['preco'], 2, '.', '') ?>"
                                         data-duracao="<?= $servico['duracao'] ?>"
                                         data-descricao="<?= $servico['descricao'] ?>"
                                         data-foto="<?= $servico['foto_servico'] ?>">
@@ -129,7 +128,8 @@ $listaServico = $servico->listarServicos();
                                         data-nome="<?= $servico['nome'] ?>"
                                         data-preco="<?= $servico['preco'] ?>"
                                         data-duracao="<?= $servico['duracao'] ?>"
-                                        data-descricao="<?= $servico['descricao'] ?>">
+                                        data-descricao="<?= $servico['descricao'] ?>"
+                                        data-foto="<?= $servico['foto_servico'] ?>">
                                         <i class="bi bi-eye"></i>
                                     </button>
                                 </td>
@@ -147,6 +147,7 @@ $listaServico = $servico->listarServicos();
     <?php include('../template/modal-servicos/modal-desativar-servico.php') ?>
     <?php include('../template/modal-servicos/modal-ativar-servico.php') ?>
     <?php include('../template/modal-servicos/modal-editar-servico.php') ?>
+    <?php include('../template/modal-servicos/modal-detalhes-servico.php') ?>
 
 </main>
 </main>
