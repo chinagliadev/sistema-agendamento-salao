@@ -35,5 +35,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
     $usuarioDAO = new usuarioDAO();
     $idUsuarioCadastrado = $usuarioDAO->inserirDados($usuario);
-    header('Location: ../index.php?cadastrado=true');
+    header('Location: ../login.php?cadastrado=true');
 }

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         !isset($_POST['txtEmail']) || !isset($_POST['txtSenha']) ||
         empty($_POST['txtEmail'] || empty($_POST['txtSenha']))
     ) {
-        header('Location: index.php?error=true');
+        header('Location: login.php?error=true');
         exit;
     }
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $dadosUsuario = $usuarioDAO->validarLogin($email, $senha);
 
     if (!$dadosUsuario) {
-        header('Location: ../index.php?error=true');
+        header('Location: ../login.php?error=true');
         exit;
     }
 

@@ -1,0 +1,173 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    font-family: sans-serif; 
+}
+
+.cabecalho {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+    padding: 14px 0px;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.cabecalho a:hover {
+    color: #8d8d8d; 
+}
+
+.cabecalho ul{
+    list-style: none;
+}
+
+.item-navegacao {
+    display: flex;
+    gap: 20px; 
+}
+
+.navegacao {
+    display: flex;
+    justify-content: center; 
+}
+
+
+.menu-hamburguer {
+    display: none; 
+}
+
+
+.botoes-navegacao a {
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-left: 10px; 
+    font-weight: bold;
+}
+
+
+.botoes-navegacao a:first-child {
+    background: transparent;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.botoes-navegacao a:last-child {
+    background-color: #000000; 
+    color: white;
+}
+
+
+.hero{
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero .conteudo-hero{
+    width: 100%;
+}
+
+.conteudo-hero h2{
+    font-size: 70px;
+}
+
+.conteudo-hero p {
+    font-size: 17px;
+    max-width: 550px;
+    width: 100%;
+}
+
+.hero-botoes {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.hero-botoes .btn-hero {
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-botoes .btn-agenda {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+}
+
+
+.hero-botoes .btn-agenda:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.hero-botoes .btn-contato {
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+}
+
+.hero-botoes .btn-contato:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+.servicos{
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    
+    .navegacao,
+    .botoes-navegacao {
+        display: none; 
+    }
+
+    .menu-hamburguer {
+        display: block; 
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1000;
+        width: 30px;
+        height: 20px;
+        position: relative;
+    }
+
+    .menu-hamburguer span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: black;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+    }
+
+}

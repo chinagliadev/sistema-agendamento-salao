@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="mb-3 text-center">
-                        <span class=" fs-6 text-secondary">Já possui uma conta? Entrar <a class="text-decoration-none" href="./index.php">aqui</a>.</span>
+                        <span class=" fs-6 text-secondary">Já possui uma conta? Entrar <a class="text-decoration-none" href="./login.php">aqui</a>.</span>
                     </div>
 
                     <button type="button" class="w-100 btn btn-dark fw-bold" id="btnCadastrar">CADASTRAR</button>

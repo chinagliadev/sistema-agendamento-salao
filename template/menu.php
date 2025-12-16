@@ -29,6 +29,6 @@
     </section>
 
     <section class="container_sair">
-        <a class="text-decoration-none fs-5 text-white" href="#"><i class="sign-out icon"></i>Sair</a>
+        <a class="text-decoration-none fs-5 text-white" href="../login.php"><i class="sign-out icon"></i>Sair</a>
     </section>
 </aside>
