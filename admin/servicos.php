@@ -67,7 +67,6 @@ $listaServico = $servico->listarServicos();
                             <th scope="col">Serviço</th>
                             <th scope="col">Preço</th>
                             <th scope="col">Duração</th>
-                            <th scope="col">Descrição</th>
                             <th scope="col">Status</th>
                             <th scope="col">Ação</th>
                         </tr>
@@ -92,7 +91,6 @@ $listaServico = $servico->listarServicos();
                                 <td><?= $servico['nome'] ?></td>
                                 <td>R$ <?= number_format($servico['preco'], 2, ',', '.') ?></td>
                                 <td><?= $servico['duracao'] ?> min</td>
-                                <td><?= $servico['descricao'] ?></td>
 
                                 <td>
                                     <span class="text-center <?= $status_class ?> fs-6">
