@@ -36,8 +36,8 @@ $listaServico = $servico->listarServicos();
         </nav>
 
         <div class="botoes-navegacao">
-            <a href="#">Login</a>
-            <a href="#">Cadastrar</a>
+            <a href="./login.php">Login</a>
+            <a href="./cadastros-login.php">Cadastrar</a>
         </div>
 
         <button class="menu-hamburguer" aria-label="Abrir Menu">

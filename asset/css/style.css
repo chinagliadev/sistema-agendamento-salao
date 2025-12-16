@@ -73,7 +73,7 @@ body {
 
 
 .hero {
-    min-height: 80vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     position: relative;
@@ -218,6 +218,9 @@ body {
     color: #555;
 }
 
+.conteudo-principal{
+    min-height: 100vh;
+}
 
 @media (max-width: 768px) {
     

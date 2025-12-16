@@ -11,6 +11,34 @@
 
 <body class="bg-light">
 
+    <header class="cabecalho container">
+        <div class="logo">
+            <h1 class="titulo-principal">Salão de Cabelo</h1>
+        </div>
+
+        <nav class="navegacao">
+            <ul class="lista-navegacao">
+                <li class="item-navegacao">
+                    <a href="#">Inicio</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Servico</a>
+                    <a href="#">Agendamentos</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="botoes-navegacao">
+            <a href="./login.php">Login</a>
+            <a href="./cadastros-login.php">Cadastrar</a>
+        </div>
+
+        <button class="menu-hamburguer" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
     <div class="container">
 
         <main class="min-vh-100 d-flex align-items-center justify-content-center formulario-cadastro">
