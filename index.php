@@ -27,9 +27,9 @@ $listaServico = $servico->listarServicos();
         <nav class="navegacao">
             <ul class="lista-navegacao">
                 <li class="item-navegacao">
-                    <a href="#">Inicio</a>
-                    <a href="#">Sobre</a>
-                    <a href="#">Servico</a>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#servicos">Servico</a>
                     <a href="#">Agendamentos</a>
                 </li>
             </ul>
@@ -47,7 +47,7 @@ $listaServico = $servico->listarServicos();
         </button>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="inicio">
         <div class="conteudo-hero container text-center text-white">
             <h2>Salão Beauty</h2>
 
@@ -65,7 +65,7 @@ $listaServico = $servico->listarServicos();
     </section>
 
 
-    <section class="servicos">
+    <section class="servicos" id="servicos">
         <div class="apresentacao-servicos container py-5">
             <div class="texto-apresentacao">
                 <h2>Serviços que oferecemos com a maior qualidade</h2>
@@ -95,6 +95,94 @@ $listaServico = $servico->listarServicos();
             </div>
         </div>
     </section>
+
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="row g-5">
+
+                <div class="col-12 col-lg-6">
+                    <div class="img-sobre">
+                        <img class="img-fluid" src="./asset/img/fazendo cabelo.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="sobre-texto">
+                        <h2>Sobre o Salão</h2>
+
+                        <p>
+                            No Salão Beauty, a beleza é tratada como uma verdadeira experiência de alto padrão. Nosso espaço foi
+                            cuidadosamente planejado para oferecer conforto, sofisticação e bem-estar, criando um ambiente elegante
+                            e acolhedor para cada cliente. Contamos com profissionais altamente qualificados, especializados nas
+                            técnicas mais modernas e nas principais tendências do mercado da beleza.
+                        </p>
+
+                        <p>
+                            Trabalhamos exclusivamente com produtos premium e prezamos por um atendimento personalizado, respeitando
+                            a individualidade, o estilo e a essência de cada pessoa. Cada detalhe, do atendimento aos serviços
+                            realizados, é pensado para proporcionar resultados impecáveis e uma experiência única, onde você se
+                            sente valorizado(a) do início ao fim.
+                        </p>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-4">
+
+                <div class="col-12 col-lg-4">
+                    <h3 class="footer-logo">Salão Beauty</h3>
+                    <p class="footer-texto">
+                        Um espaço dedicado à beleza, sofisticação e bem-estar.
+                        Experiências exclusivas com atendimento personalizado
+                        e serviços de alto padrão.
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h4 class="footer-titulo">Menu</h4>
+                    <ul class="footer-lista">
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Agendamentos</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <h4 class="footer-titulo">Serviços</h4>
+                    <ul class="footer-lista">
+                        <li><a href="#">Cortes</a></li>
+                        <li><a href="#">Coloração</a></li>
+                        <li><a href="#">Tratamentos</a></li>
+                        <li><a href="#">Penteados</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <h4 class="footer-titulo">Contato</h4>
+                    <ul class="footer-contato">
+                        <li> Rua fulano dias, 123 – Centro</li>
+                        <li> (19) 99999-9999</li>
+                        <li> contato@salaobeauty.com</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Salão Beauty. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
 
 </body>
 
