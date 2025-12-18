@@ -1,8 +1,43 @@
 .input-erro {
-    border: 1px solid #fa7582 !important; 
+    border: 1px solid #fa7582 !important;
     background-color: #ffe6e6 !important;
 }
 
-.label-erro{
+.label-erro {
     color: #dc3545;
+}
+
+body {
+    background-color: #f5f0ea;
+}
+
+.btn-login {
+    background: #9c7838;
+    color: #ffffff;
+    padding: 12px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    border: none;
+    border-radius: 3px;
+}
+
+.btn-login:hover{
+    background: #7a5e2d;
+}
+
+.formulario{
+    border-radius: 10px;
+    max-width:550px;
+    background-color: #fff;
+    padding: 50px;
+    min-height: 500px;
+}
+
+.paragrafo-login{
+    font-weight: 300;
 }

@@ -9,43 +9,15 @@
     <link rel="stylesheet" href="./asset/css/formulario-usuario.css">
 </head>
 
-<body class="bg-light">
-
-    <header class="cabecalho container">
-        <div class="logo">
-            <h1 class="titulo-principal">Salão de Cabelo</h1>
-        </div>
-
-        <nav class="navegacao">
-            <ul class="lista-navegacao">
-                <li class="item-navegacao">
-                    <a href="#">Inicio</a>
-                    <a href="#">Sobre</a>
-                    <a href="#">Servico</a>
-                    <a href="#">Agendamentos</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="botoes-navegacao">
-            <a href="./login.php">Login</a>
-            <a href="./cadastros-login.php">Cadastrar</a>
-        </div>
-
-        <button class="menu-hamburguer" aria-label="Abrir Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
+<body class="">
 
     <div class="container">
 
         <main class="min-vh-100 d-flex align-items-center justify-content-center formulario-cadastro">
 
-            <div class="formulario shadow p-5 bg-white rounded w-100" style="max-width: 600px;">
+            <div class="formulario w-100">
                 <h1 class="fs-2 fw-bold text-center">CRIAR CONTA</h1>
-                <p class="fs-5 text-secondary text-center mensagem-erro">Crie sua conta e comece a agendar seus serviços.</p>
+                <p class="fs-5 paragrafo-login text-center mensagem-erro">Crie sua conta e comece a agendar seus serviços.</p>
                 <form action="./controller/UsuarioController.php" method="post" id="formCadastro">
 
                     <div class="mb-3">
@@ -87,7 +59,7 @@
                         <span class=" fs-6 text-secondary">Já possui uma conta? Entrar <a class="text-decoration-none" href="./login.php">aqui</a>.</span>
                     </div>
 
-                    <button type="button" class="w-100 btn btn-dark fw-bold" id="btnCadastrar">CADASTRAR</button>
+                    <button type="button" class="w-100 btn-login" id="btnCadastrar">CADASTRAR</button>
                 </form>
             </div>
 

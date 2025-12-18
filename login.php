@@ -15,19 +15,20 @@ $erro_login = (isset($_GET['error']) && $_GET['error'] === 'true')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./asset/css/formulario-usuario.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/formulario-usuario.css">
     <title>Salao Agendamentos</title>
 </head>
 
 <body>
     <div class="container">
-        <main class="conteudo-principal d-flex align-items-center justify-content-center">
-            <div class="w-100 formulario shadow p-5 bg-white rounded" style="max-width:600px;">
+        <main class="conteudo-principal vh-100 d-flex align-items-center justify-content-center">
+            <div class="w-100 formulario">
                 <form action="./controller/LoginController.php" method="post" id="form_login">
                     <h1 class="fs-2 fw-bold text-center">LOGIN</h1>
-                    <p class="fs-5 text-secondary text-center">Seja bem vindo ao sistema de Agendamentos</p>
+                    <p class="fs-5 paragrafo-login text-center">
+                        Bem-vindo ao sistema de agendamento do salão. Faça login para agendar seu horário.
+                    </p>
 
                     <div class="mb-3">
                         <label for="txtEmail" class="form-label">Email</label>
@@ -52,7 +53,7 @@ $erro_login = (isset($_GET['error']) && $_GET['error'] === 'true')
                         <span class=" fs-6 text-secondary">Não possui uma conta? Cadastre-se <a class="text-decoration-none" href="./cadastros-login.php">aqui</a>.</span>
                     </div>
 
-                    <button class="w-100 btn btn-dark fw-bold" id="btnLogin">ENTRAR</button>
+                    <button class="w-100 btn-login fw-bold" id="btnLogin">ENTRAR</button>
                 </form>
             </div>
 

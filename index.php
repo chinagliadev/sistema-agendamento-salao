@@ -59,7 +59,7 @@ $listaServico = $servico->listarServicos();
             </p>
 
             <div class="hero-botoes">
-                <a href="#contato" class="btn-hero btn-agenda">Agendar Horário</a>
+                <a href="./login.php" class="btn-hero btn-agenda">Agendar Horário</a>
             </div>
         </div>
     </section>
@@ -68,7 +68,7 @@ $listaServico = $servico->listarServicos();
     <section class="servicos" id="servicos">
         <div class="apresentacao-servicos container py-5">
             <div class="texto-apresentacao">
-                <h2>Serviços que oferecemos com a maior qualidade</h2>
+                <h2>Oferecemos serviços de alta qualidade para valorizar sua imagem</h2>
             </div>
 
             <a href="#">Todos os serviços</a>
@@ -83,7 +83,7 @@ $listaServico = $servico->listarServicos();
                     $contador++;
                 ?>
                     <div class="col-sm-12 col-md-6 col-lg-4">
-                        <figure class="card-servico">
+                        <figure class="card-servico reveal-card">
                             <img src="./uploads/<?= $servico['foto_servico']; ?>" alt="<?= $servico['nome']; ?>">
                             <figcaption>
                                 <h3><?= $servico['nome']; ?></h3>
@@ -96,7 +96,7 @@ $listaServico = $servico->listarServicos();
         </div>
     </section>
 
-    <section class="sobre" id="sobre">
+    <section class="sobre hidden" id="sobre">
         <div class="container">
             <div class="row g-5">
 
@@ -183,7 +183,7 @@ $listaServico = $servico->listarServicos();
     </footer>
 
 
-
+<script src="./asset/js/app.js"></script>
 </body>
 
 </html>
