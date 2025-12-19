@@ -1,99 +1,215 @@
-body{
-    background-color: #f5f0ea;
+body {
+    background-color: #f7f4ef;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cabecalho-servico {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 14px;
+    padding: 18px 0;
 }
 
-.pesquisar-servico {
-    width: 100%;
-}
-
-.input-servico {
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    outline: none;
-    max-width: 400px;
-    width: 100%;
-}
-
-.sessao-servicos {
-    background-color: #fff;
-    padding: 12px;
-    border-radius: 8px;
+.logo h1 {
+    font-weight: 700;
+    color: #1c1c1c;
+    letter-spacing: 1px;
 }
 
 .btn-agendamento {
-    padding: 10px 12px;
-    border-radius: 4px;
-    margin-left: 10px;
-    font-weight: bold;
-    background-color: #000000;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #c8a45d, #a47c2c);
     color: white;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.sessao-card-servico{
+.btn-agendamento:hover {
+    background: linear-gradient(135deg, #a47c2c, #8a641f);
+    transform: translateY(-2px);
+}
+
+.sessao-servicos {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.sessao-servicos h2 {
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.sessao-servicos p {
+    font-size: 0.95rem;
+}
+
+.pesquisar-servico {
+    margin-top: 15px;
+}
+
+.input-servico {
+    padding: 12px 18px;
+    border-radius: 30px;
+    border: 1px solid #d0c7b8;
+    font-size: 15px;
+    outline: none;
+    max-width: 420px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.input-servico:focus {
+    border-color: #c8a45d;
+    box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.2);
+}
+
+.sessao-card-servico {
     min-height: 100vh;
+    margin-top: 30px;
 }
 
 .card-servico {
     width: 100%;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background: #fff;
-    border-radius: 8px; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-servico figcaption {
-    padding: 20px; 
-    flex-grow: 1; 
-}
-
-.card-footer {
-    text-align: center; 
-    padding: 0px 12px;
-    margin-bottom: 12px;
-}
-
-.card-footer button{
-    padding: 4px;
-    border-radius: 4px;
-    width: 100%;
-    background-color: #7b5f2d;
-    border: none;
-    color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: all 0.35s ease;
+    margin-bottom: 25px;
+    height: 400px; 
 }
 
 .card-servico:hover {
-    cursor: pointer;
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
 }
 
 .card-servico img {
     width: 100%;
-    height: 280px;
+    height: 260px;
     object-fit: cover;
-    display: block;
 }
 
+.card-servico figcaption {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
 
 .card-servico h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin: 0;
 }
 
-.card-servico p {
-    font-size: 0.90rem;
-    color: #202020;
+.card-footer {
+    padding: 0 18px 18px;
+    margin-top: auto; 
+}
+
+.btn-agendar-servico {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #c8a45d, #a47c2c);
+    border: none;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-agendar-servico:hover {
+    background: linear-gradient(135deg, #a47c2c, #8a641f);
+    transform: scale(1.03);
+}
+
+
+
+@media (max-width: 992px) {
+
+    .cabecalho-servico {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .btn-agendamento {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .sessao-servicos {
+        padding: 20px;
+    }
+
+    .sessao-servicos h2 {
+        font-size: 1.4rem;
+    }
+
+    .input-servico {
+        max-width: 100%;
+    }
+
+    .card-servico {
+        height: auto;
+    }
+
+    .card-servico img {
+        height: 230px;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .sessao-servicos {
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .sessao-servicos p {
+        font-size: 0.9rem;
+    }
+
+    .pesquisar-servico {
+        margin-top: 12px;
+    }
+
+    .input-servico {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .card-servico img {
+        height: 200px;
+    }
+
+    .card-servico h3 {
+        font-size: 1rem;
+    }
+
+    .btn-agendar-servico {
+        font-size: 0.9rem;
+        padding: 9px;
+    }
 }

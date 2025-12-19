@@ -41,14 +41,20 @@ $nome = $_SESSION['nomeUsuario'];
         </p>
 
         <div class="pesquisar-servico">
-            <input class="input-servico" type="text" placeholder="Pesquisar serviço">
+            <input id="input-servico" class="input-servico" type="text" placeholder="Pesquisar serviço">
         </div>
     </section>
 
     <section class="sessao-card-servico container">
         <div class="row">
+            <div id="sem-resultado" class="aviso-pesquisa d-flex flex-column align-items-center justify-content-center d-none">
+                <img class="img-fluid" src="./asset/img/Search-rafiki.png" alt="" style="max-width: 450px;">
+                <p class="mt-3 fs-4 fw-bold text-secondary">
+                    Ops! Nenhum serviço encontrado
+                </p>
+            </div>
             <?php foreach ($lista_servico as $servico) { ?>
-                <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col-sm-12 col-md-6 col-lg-3 item-card">
                     <figure class="card-servico reveal-card">
                         <img src="./uploads/<?= $servico['foto_servico']; ?>" alt="<?= $servico['nome']; ?>">
                         <figcaption>
@@ -62,6 +68,8 @@ $nome = $_SESSION['nomeUsuario'];
             <?php } ?>
         </div>
     </section>
+
+    <script src="./asset/js/agendamento.js"></script>
 </body>
 
 </html>
