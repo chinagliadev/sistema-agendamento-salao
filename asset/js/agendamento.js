@@ -24,3 +24,9 @@ input.addEventListener('input', () => {
         semResultado.classList.add('d-none');
     }
 });
+
+const modal = document.getElementById('modal-agendamento');
+
+modal.addEventListener('show.bs.modal', () => {
+    console.log('Modal abrindo...');
+});
