@@ -63,8 +63,10 @@ $nome = $_SESSION['nomeUsuario'];
                         <div class="card-footer">
                             <button
                                 class="btn-agendar-servico"
+                                data-servico="<?=$servico['nome']?>"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agendamento">
+                                data-bs-target="#modal-agendamento"
+                                >
                                 AGENDAR
                             </button>
                         </div>

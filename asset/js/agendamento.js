@@ -27,6 +27,8 @@ input.addEventListener('input', () => {
 
 const modal = document.getElementById('modal-agendamento');
 
-modal.addEventListener('show.bs.modal', () => {
-    console.log('Modal abrindo...');
+modal.addEventListener('show.bs.modal', (e) => {
+    const btn = event.relatedTarget;
+    const servico = btn.getAttribute('data-servico');
+    document.getElementById('titulo-modal').innerHTML = servico
 });

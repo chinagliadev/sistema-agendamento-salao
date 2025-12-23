@@ -213,3 +213,83 @@ body {
         padding: 9px;
     }
 }
+
+
+#modal-agendamento .modal-content {
+    border-radius: 22px;
+    border: none;
+    background-color: #fffdf9;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+#modal-agendamento .modal-header {
+    background: linear-gradient(135deg, #c8a45d, #a47c2c);
+    border-bottom: none;
+    padding: 18px 22px;
+}
+
+#modal-agendamento .modal-title {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#modal-agendamento .modal-body {
+    padding: 22px;
+}
+
+#modal-agendamento .form-label {
+    color: #1c1c1c;
+    font-size: 0.9rem;
+}
+
+#modal-agendamento .form-control,
+#modal-agendamento .form-select {
+    border-radius: 18px;
+    padding: 10px 14px;
+    border: 1px solid #d0c7b8;
+    font-size: 14px;
+}
+
+#modal-agendamento .form-control:focus,
+#modal-agendamento .form-select:focus {
+    border-color: #c8a45d;
+    box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.25);
+}
+
+#modal-agendamento .alert-info {
+    background-color: #f7f4ef;
+    border: none;
+    color: #6a5b3d;
+    border-radius: 14px;
+}
+
+#modal-agendamento .modal-footer {
+    border-top: none;
+    padding: 18px 22px;
+}
+
+#modal-agendamento .btn-outline-secondary {
+    border-radius: 20px;
+    border: 1px solid #d0c7b8;
+    color: #6a5b3d;
+    transition: all 0.3s ease;
+}
+
+#modal-agendamento .btn-outline-secondary:hover {
+    background-color: #f1ede6;
+}
+
+#modal-agendamento .btn-primary {
+    background: linear-gradient(135deg, #c8a45d, #a47c2c);
+    border: none;
+    border-radius: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+#modal-agendamento .btn-primary:hover {
+    background: linear-gradient(135deg, #a47c2c, #8a641f);
+    transform: translateY(-2px);
+}
