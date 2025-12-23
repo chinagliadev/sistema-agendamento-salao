@@ -20,13 +20,12 @@ class profissionalDAO
     public function inserirProfissional(Profissional $profissional)
     {
 
-        $sqlInserir = "INSERT INTO profissionais (nome, especialidade, telefone, email, foto_perfil, cpf, ativo)
-            VALUE (:nome, :especialidade, :telefone, :email, :foto_perfil, :cpf, :ativo)";
+        $sqlInserir = "INSERT INTO profissionais (nome, telefone, email, foto_perfil, cpf, ativo)
+            VALUE (:nome, :telefone, :email, :foto_perfil, :cpf, :ativo)";
 
         $dadosProfissionais = $this->conn->prepare($sqlInserir);
         $dadosProfissionais->execute([
             ':nome' => $profissional->getNome(),
-            ':especialidade' => $profissional->getEspecialidade(),
             ':telefone' => $profissional->getTelefone(),
             ':email' => $profissional->getEmail(),
             ':foto_perfil' => $profissional->getFotoProfissional(),
@@ -84,7 +83,6 @@ class profissionalDAO
     {
         $sqlAtualizar = "UPDATE profissionais 
                         SET nome = :nome, 
-                        especialidade = :especialidade,
                         telefone = :telefone,
                         email = :email,
                         foto_perfil = :foto_perfil, 
@@ -95,7 +93,6 @@ class profissionalDAO
         $dadosEditar->execute(
             [
                 ':nome' => $profissional->getNome(),
-                ':especialidade' => $profissional->getEspecialidade(),
                 ':telefone' => $profissional->getTelefone(),
                 ':email' => $profissional->getEmail(),
                 ':foto_perfil' => $profissional->getFotoProfissional(),

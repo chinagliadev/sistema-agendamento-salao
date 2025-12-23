@@ -28,14 +28,13 @@ btnCadastrarProf.addEventListener("click", (e) => {
     const nomeValido = validarObrigatorio(nomeProf, "Informe o nome");
     const cpfValido = validarCPF(cpfProf);
     const telValido = validarTelefone(telProf);
-    const espValida = validarObrigatorio(espProf, "Informe a especialidade");
     const emailValido = validarEmail(emailProf);
 
     const cpfLimpo = cpfMask.unmaskedValue;
     const telLimpo = telMask.unmaskedValue;
 
 
-    if (nomeValido && cpfValido && telValido && espValida && emailValido) {
+    if (nomeValido && cpfValido && telValido && emailValido) {
         formProfissional.submit();
     }
 });
@@ -152,7 +151,7 @@ function validarEspecialidade(select) {
     return true;
 }
 
-[nomeProf, cpfProf, telProf, espProf, emailProf].forEach(campo => {
+[nomeProf, cpfProf, telProf, emailProf].forEach(campo => {
     campo.addEventListener("input", () => {
 
         campo.classList.remove("input-erro");

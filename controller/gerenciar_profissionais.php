@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cpf = $_POST['txtCpfProfissionalEditar'];
             $telefone = $_POST['txtTelefoneProfissionalEditar'];
             $email = $_POST['txtEmailProfissionalEditar'];
-            $especialidade = $_POST['txtEspecialidadeProfissionalEditar'];
 
             $arquivoFoto = $_FILES['arquivoFotoProfissionalEditar'];
 
@@ -84,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $cpf,
                 $telefone,
                 $email,
-                $especialidade,
                 $caminhoCompleto
             );
 

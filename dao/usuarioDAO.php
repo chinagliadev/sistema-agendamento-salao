@@ -50,5 +50,13 @@ class usuarioDAO
         return false;
     }
 
-    
+
+
+    public function qtdUsuario()
+    {
+        $sql = "SELECT COUNT(*) FROM usuarios";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn(); 
+    }
 }

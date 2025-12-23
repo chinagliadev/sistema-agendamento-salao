@@ -9,13 +9,12 @@ class Profissional
     private $email;
     private $especialidade;
 
-   public function __construct($nome, $cpf, $telefone, $email, $especialidade, $fotoProfissional)
+   public function __construct($nome, $cpf, $telefone, $email, $fotoProfissional)
 {
     $this->nome = $nome;
     $this->cpf = $cpf;
     $this->telefone = $telefone;
     $this->email = $email;
-    $this->especialidade = $especialidade;
     $this->fotoProfissional = $fotoProfissional;
     }
 

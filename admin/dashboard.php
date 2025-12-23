@@ -2,11 +2,16 @@
 require_once '../config/autenticar.php';
 include '../template/header.php';
 include '../dao/profissionalDAO.php';
+include '../dao/UsuarioDAO.php';
 
 $profissionais = new ProfissionalDAO();
 
 $qtdProfissionaisAtivos = $profissionais->qtdProfissionaisAtivos();
 $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
+
+
+$usuario = new usuarioDAO();
+$qtdUsuario = $usuario->qtdUsuario();
 
 ?>
 <main class="d-flex">
@@ -29,9 +34,9 @@ $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
             </nav>
         </header>
 
-        <section class="sessao-card-dashboard ">
+        <section class="sessao-card-dashboard vh-100">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row g-3">
 
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card shadow p-2 w-100 card-dashboard">
@@ -39,7 +44,7 @@ $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
                                 <div class="row">
                                     <div class="col-8">
                                         <p class="card-subtitle text-muted">Total de Clientes</p>
-                                        <h5 class="card-title fs-1 fw-bold">3000</h5>
+                                        <h5 class="card-title fs-1 fw-bold"><?= $qtdUsuario ?></h5>
                                     </div>
                                     <div class="col-4 d-flex justify-content-end align-items-start">
                                         <i class="bi bi-people fs-4"></i>
@@ -59,6 +64,26 @@ $qtdProfissionaisDesativos = $profissionais->qtdProfissionaisDesativados();
                                 <div>
                                     <canvas id="myChart"></canvas>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card shadow p-2 w-100 card-dashboard border-start border-success border-4">
+                            <div class="card-body">
+                                <p class="card-subtitle text-muted">Ganhos do Mês</p>
+                                <h5 class="card-title fs-1 fw-bold text-success"> </h5>
+                                <i class="bi bi-cash-stack fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card shadow p-2 w-100 card-dashboard border-start border-primary border-4">
+                            <div class="card-body">
+                                <p class="card-subtitle text-muted">Agendamentos Hoje</p>
+                                <h5 class="card-title fs-1 fw-bold"></h5>
+                                <i class="bi bi-calendar-check fs-4"></i>
                             </div>
                         </div>
                     </div>

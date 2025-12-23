@@ -1,3 +1,7 @@
+<?php
+$pagina_atual = basename($_SERVER['PHP_SELF']);
+?>
+
 <button id="btn-menu" class="btn btn-dark">
     <i class="bi bi-list"></i>
 </button>
@@ -15,14 +19,27 @@
             <ul class="nav flex-column">
 
                 <li class="nav-item">
-                    <a class="text-decoration-none nav-link active fs-5 text-white" href="../admin/dashboard.php"><i class="bi bi-archive-fill"></i> Dashboard</a>
+                    <a class="nav-link text-white <?= ($pagina_atual == 'dashboard.php') ? 'active' : '' ?>" href="dashboard.php">
+                        <i class="bi bi-archive-fill"></i> Dashboard
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="text-decoration-none nav-link fs-5 text-white" href="../admin/profissionais.php"><i class="bi bi-briefcase-fill"></i> Profissional</a>
+                    <a class="nav-link text-white <?= ($pagina_atual == 'profissionais.php') ? 'active' : '' ?>" href="profissionais.php">
+                        <i class="bi bi-briefcase-fill"></i> Profissional
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="text-decoration-none nav-link fs-5 text-white" href="../admin/servicos.php"><i class="bi bi-scissors"></i> Serviços</a>
+                    <a class="nav-link text-white <?= ($pagina_atual == 'servicos.php') ? 'active' : '' ?>" href="servicos.php">
+                        <i class="bi bi-scissors"></i> Serviços
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white <?= ($pagina_atual == 'agendamentos.php') ? 'active' : '' ?>" href="agendamentos.php">
+                        <i class="bi bi-calendar-event"></i> Agenda
+                    </a>
                 </li>
             </ul>
         </div>

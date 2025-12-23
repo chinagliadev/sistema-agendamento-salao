@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         !isset($_POST['txtCpfProfissional']) || empty($_POST['txtCpfProfissional']) ||
         !isset($_POST['txtTelefoneProfissional']) || empty($_POST['txtTelefoneProfissional']) ||
         !isset($_POST['txtEmailProfissional']) || empty($_POST['txtEmailProfissional']) ||
-        !isset($_POST['txtEspecialidadeProfissional']) || empty($_POST['txtEspecialidadeProfissional']) ||
         !isset($_FILES['arquivoFotoProfissional']) || $_FILES['arquivoFotoProfissional']['error'] !== UPLOAD_ERR_OK 
     ) {
         header('Location: ../admin/profissionais.php?error=campos_obrigatorios');
@@ -21,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cpf = $_POST['txtCpfProfissional'];
     $telefone = $_POST['txtTelefoneProfissional'];
     $email = $_POST['txtEmailProfissional'];
-    $especialidade = $_POST['txtEspecialidadeProfissional'];
     
     $arquivoFoto = $_FILES['arquivoFotoProfissional'];
     $nomeArquivoFoto = $arquivoFoto['name']; 
@@ -40,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cpf, 
         $telefone, 
         $email, 
-        $especialidade, 
         $caminhoCompleto
     );
 

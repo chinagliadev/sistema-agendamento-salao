@@ -1,3 +1,10 @@
+<?php
+require_once './dao/ProfissionalDAO.php';
+
+$profissionalDAO = new ProfissionalDAO();
+$listaProfissionais = $profissionalDAO->listarProfissionais();
+?>
+
 <div class="modal fade" id="modal-agendamento" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-4">
@@ -11,14 +18,14 @@
       </div>
 
       <div class="modal-body">
-        <form action="" method="POST">
+        <form id="formAgendamento" action="" method="POST">
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label fw-semibold">
                 <i class="bi bi-clock me-1"></i> Horário
               </label>
-              <select class="form-select" name="hora" required>
+              <select id="horario" class="form-select" name="hora" required>
                 <option value="">Selecione</option>
                 <option>09:00</option>
                 <option>10:00</option>
@@ -37,8 +44,30 @@
               <label class="form-label fw-semibold">
                 <i class="bi bi-calendar-event me-1"></i> Data
               </label>
-              <input class="form-control" type="date" name="data" required>
+              <input id="data" class="form-control" type="date" name="data" required>
             </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-person-badge me-1"></i> Profissional
+            </label>
+
+            <select name="profissional_id" class="form-select" required>
+              <option value="">Selecione um profissional</option>
+
+              <?php foreach ($listaProfissionais as $profissional): ?>
+                <option value="<?= $profissional['id_profissional']; ?>">
+                  <?= $profissional['nome']; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+
+
+          <div id="alerta-erro" class="alert alert-danger small d-none">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            <span class="msg-texto"></span>
           </div>
 
           <div class="alert alert-info small">
@@ -53,7 +82,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           <i class="bi bi-x-circle"></i> Cancelar
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button form="formAgendamento" type="submit" class="btn btn-primary">
           <i class="bi bi-check-circle"></i> Confirmar Agendamento
         </button>
       </div>

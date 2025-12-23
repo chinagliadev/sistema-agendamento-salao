@@ -55,7 +55,6 @@ function configurarModalEditar(elementoModal) {
         const inputTelefone = document.getElementById('txtTelefoneProfissionalEditar');
         const inputEmail = document.getElementById('txtEmailProfissionalEditar');
         const inputEspecialidade = document.getElementById('txtEspecialidadeProfissionalEditar');
-        const inputFoto = document.getElementById('arquivoFotoProfissionalEditar');
 
         const imgPreview = document.getElementById('preVizualizarImagemEditar');
         const textoPreview = document.getElementById('textoPreVizualizacaoEditar');
@@ -69,16 +68,18 @@ function configurarModalEditar(elementoModal) {
         inputEmail.value = emailProfissional;
         inputEspecialidade.value = especialidadeProfissional;
 
-        if (fotoProfissional) {
+        if (fotoProfissional && fotoProfissional.trim() !== "") {
             imgPreview.src = fotoProfissional;
             imgPreview.classList.remove("d-none");
             textoPreview.classList.add("d-none");
         } else {
+            imgPreview.src = "";
             imgPreview.classList.add("d-none");
             textoPreview.classList.remove("d-none");
         }
     });
 }
+
 
 const modalEditar = document.getElementById('modalEditarProfissional');
 configurarModalEditar(modalEditar);
@@ -126,15 +127,15 @@ function configurarModalDetalhes() {
         const button = event.relatedTarget
         
         const nomeProfissional = button.getAttribute('data-nome');
-        const especialidadeProfissional = button.getAttribute('data-especialidade');
         const telefoneProfissional = button.getAttribute('data-telefone');
         const emailProfissional = button.getAttribute('data-email');
         const cpfProfissional = button.getAttribute('data-cpf');
         const fotoProfissional = button.getAttribute('data-foto');
         const textoPreview = document.getElementById('textoPreVizualizacaoDetalhes');
+
+        console.log(telefoneProfissional)
         
         document.getElementById('campo_nome').textContent = nomeProfissional;
-        document.getElementById('campo_especialidade').textContent = especialidadeProfissional;
         document.getElementById('campo_telefone').textContent = telefoneProfissional;
         document.getElementById('campo_email').textContent = emailProfissional;
         document.getElementById('campo_cpf').textContent = cpfProfissional;

@@ -8,12 +8,10 @@ $dao = new ProfissionalDAO();
 if (isset($_GET['profissional_pesquisa']) && $_GET['profissional_pesquisa'] !== '') {
     $pesquisa = $_GET['profissional_pesquisa'];
     $listaProfissionais = $dao->pesquisarProfissionais($pesquisa);
-
 }
 else if (isset($_GET['status']) && $_GET['status'] !== '') {
     $status = $_GET['status'];
     $listaProfissionais = $dao->filtrarStatusProfissional($status);
-
 }
 else {
     $listaProfissionais = $dao->listarProfissionais();
@@ -143,7 +141,6 @@ else {
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col">Especialidade</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
@@ -203,7 +200,6 @@ else {
                                         </div>
                                     </th>
 
-                                    <td><?= $profissionais['especialidade'] ?></td>
                                     <td><?= $profissionais['telefone'] ?></td>
                                     <td><?= $profissionais['email'] ?></td>
 
@@ -229,7 +225,6 @@ else {
                                             data-bs-target="#modalEditarProfissional"
                                             data-id="<?= $profissionais['id_profissional'] ?>"
                                             data-nome="<?= $profissionais['nome'] ?>"
-                                            data-especialidade="<?= $profissionais['especialidade'] ?>"
                                             data-telefone="<?= $profissionais['telefone'] ?>"
                                             data-email="<?= $profissionais['email'] ?>"
                                             data-cpf="<?= $profissionais['cpf'] ?>"
@@ -243,7 +238,6 @@ else {
                                             data-bs-target="#modalDetalhesProfissional"
                                             data-id="<?= $profissionais['id_profissional'] ?>"
                                             data-nome="<?= $profissionais['nome'] ?>"
-                                            data-especialidade="<?= $profissionais['especialidade'] ?>"
                                             data-telefone="<?= $profissionais['telefone'] ?>"
                                             data-email="<?= $profissionais['email'] ?>"
                                             data-cpf="<?= $profissionais['cpf'] ?>"

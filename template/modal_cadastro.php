@@ -48,35 +48,6 @@
                                     <input type="email" class="form-control" id="txtEmailProfissional" name="txtEmailProfissional">
                                     <span class="mensagem-erro d-none text-danger"></span>
                                 </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="txtEspecialidadeProfissional" class="form-label">Especialidade</label>
-                                    <select name="txtEspecialidadeProfissional" id="txtEspecialidadeProfissional" class="form-select" aria-label="Especialidade do profissional">
-                                        <option value="" selected disabled>Selecione a especialidade</option>
-                                        <option value="cabeleireiro">Cabeleireiro / Hair Stylist</option>
-                                        <option value="corte-feminino">Corte feminino</option>
-                                        <option value="corte-masculino">Corte masculino / Barbeiro</option>
-                                        <option value="corte-infantil">Corte infantil</option>
-                                        <option value="penteados">Penteados (noivas, festas, eventos)</option>
-                                        <option value="colorista">Colorista (tintura e mechas)</option>
-                                        <option value="balayage">Balayage / Ombré / Luzes</option>
-                                        <option value="tonalizacao">Tonalização</option>
-                                        <option value="descoloracao">Descoloração</option>
-                                        <option value="tratamento-danificado">Tratamento de cabelo danificado</option>
-                                        <option value="progressiva">Progressiva / Escova definitiva</option>
-                                        <option value="relaxamento">Relaxamento / Alisamento</option>
-                                        <option value="permanente">Permanente / Cachos</option>
-                                        <option value="hidratacao">Hidratação e nutrição</option>
-                                        <option value="botox-capilar">Botox capilar</option>
-                                        <option value="reconstrucao">Reconstrução capilar</option>
-                                        <option value="terapia-capilar">Terapia capilar / Queda de cabelo</option>
-                                        <option value="extensao">Extensão de cabelo / Apliques</option>
-                                        <option value="trancas">Tranças e tranças afro</option>
-                                        <option value="barbershop">Corte masculino avançado / Barbershop</option>
-                                        <option value="consultoria-estilo">Consultoria de estilo e imagem</option>
-                                    </select>
-
-                                    <span class="mensagem-erro d-none text-danger"></span>
-                                </div>
                             </div>
                         </div>
                     </div>
