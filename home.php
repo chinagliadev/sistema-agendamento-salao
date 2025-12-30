@@ -7,6 +7,7 @@ $servico = new ServicoDAO();
 $lista_servico = $servico->listarServicos();
 
 $nome = $_SESSION['nomeUsuario'];
+$idUsuario = $_SESSION['idUsuario'];
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +65,8 @@ $nome = $_SESSION['nomeUsuario'];
                             <button
                                 class="btn-agendar-servico"
                                 data-servico="<?=$servico['nome']?>"
+                                data-idServico="<?=$servico['id_servico']?>"
+                                data-usuario="<?=$idUsuario?>"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-agendamento"
                                 >

@@ -28,9 +28,16 @@ input.addEventListener('input', () => {
 const modal = document.getElementById('modal-agendamento');
 
 modal.addEventListener('show.bs.modal', (e) => {
-    const btn = event.relatedTarget;
+    const btn = e.relatedTarget;
     const servico = btn.getAttribute('data-servico');
+    const idUsuario = btn.getAttribute('data-usuario');
+    const idServico = btn.getAttribute('data-idServico');
+
+
     document.getElementById('titulo-modal').innerHTML = servico
+
+    document.getElementById('idUsuario').value = idUsuario
+    document.getElementById('idServico').value = idServico
 });
 
 let cronometroAlerta;
@@ -59,13 +66,15 @@ function esconderErro() {
 }
 
 const btnConfirmar = document.querySelector('button[type="submit"]');
+const formAgendamento = document.getElementById('formAgendamento');
+
+const selectHora = document.querySelector('select[name="hora"]');
+const inputData = document.querySelector('input[name="data"]');
+const selectProf = document.querySelector('select[name="profissional_id"]');
+
 
 btnConfirmar.addEventListener('click', (e) => {
     e.preventDefault(); 
-    
-    const selectHora = document.querySelector('select[name="hora"]');
-    const inputData = document.querySelector('input[name="data"]');
-    const selectProf = document.querySelector('select[name="profissional_id"]');
 
     if (selectHora.value === "" || inputData.value === "" ||selectProf.value === "" ) {
         mostrarErro("Por favor, preencha a data, horário e o profissional antes de continuar.");
@@ -74,6 +83,7 @@ btnConfirmar.addEventListener('click', (e) => {
         
         const modalForm = bootstrap.Modal.getInstance(document.getElementById('modal-agendamento'));
         const modalSucesso = new bootstrap.Modal(document.getElementById('modal-sucesso'));
+        formAgendamento.submit();
 
         modalForm.hide();
 
@@ -81,6 +91,5 @@ btnConfirmar.addEventListener('click', (e) => {
 
         selectHora.value = "";
         inputData.value = "";
-        
     }
 });

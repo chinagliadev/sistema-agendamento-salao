@@ -18,8 +18,10 @@ $listaProfissionais = $profissionalDAO->listarProfissionais();
       </div>
 
       <div class="modal-body">
-        <form id="formAgendamento" action="" method="POST">
-
+        <form id="formAgendamento" action="./controller/gerenciar_agendamento.php" method="POST">
+          <input type="hidden" id="idUsuario" name="idUsuario">
+          <input type="hidden" id="idServico" name="idServico">
+          <input type="hidden" name="acaoAgendamento" value="agendar">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label fw-semibold">
