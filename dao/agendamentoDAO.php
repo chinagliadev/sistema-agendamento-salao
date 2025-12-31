@@ -26,7 +26,7 @@ class AgendamentoDAO
                 ':id_usuario'      => $agendamento->getIdUsuario(),
                 ':id_servico'      => $agendamento->getIdServico(),
                 ':id_profissional' => $agendamento->getIdProfissional(),
-                ':data_agendamento' => $agendamento->getData(), // Corrigido aqui
+                ':data_agendamento' => $agendamento->getData(),
                 ':hora'            => $agendamento->getHorario(),
                 ':status'          => $agendamento->getStatus()
             ]);
@@ -38,5 +38,20 @@ class AgendamentoDAO
         }
     }
 
+    public function horariosOcupados($data, $idProfissional)
+    {
+        $sql = "SELECT hora
+            FROM agenda
+            WHERE data_agendamento = :data
+              AND id_profissional = :id_profissional
+              AND status = 'marcado'";
 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':data' => $data,
+            ':id_profissional' => $idProfissional
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
