@@ -12,7 +12,7 @@ $listaServico = $servico->listarServicos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salão de Cabelo</title>
+    <title>Studio Belle</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./asset/css/style.css">
@@ -21,7 +21,7 @@ $listaServico = $servico->listarServicos();
 <body>
     <header class="cabecalho container">
         <div class="logo">
-            <h1 class="titulo-principal">Salão de Cabelo</h1>
+            <h1 class="titulo-principal">Studio Belle</h1>
         </div>
 
         <nav class="navegacao">
@@ -49,10 +49,10 @@ $listaServico = $servico->listarServicos();
 
     <section class="hero" id="inicio">
         <div class="conteudo-hero container text-center text-white">
-            <h2>Salão Beauty</h2>
+            <h2>Studio Belle</h2>
 
             <p>
-                No Salão Beauty, beleza e cuidado caminham juntos.
+                No Studio Belle, beleza e cuidado caminham juntos.
                 Trabalhamos com as melhores técnicas e produtos do mercado
                 para garantir resultados incríveis, sempre respeitando seu
                 estilo e sua personalidade.
@@ -137,7 +137,7 @@ $listaServico = $servico->listarServicos();
             <div class="row gy-4">
 
                 <div class="col-12 col-lg-4">
-                    <h3 class="footer-logo">Salão Beauty</h3>
+                    <h3 class="footer-logo">Studio Belle</h3>
                     <p class="footer-texto">
                         Um espaço dedicado à beleza, sofisticação e bem-estar.
                         Experiências exclusivas com atendimento personalizado
@@ -170,14 +170,14 @@ $listaServico = $servico->listarServicos();
                     <ul class="footer-contato">
                         <li> Rua fulano dias, 123 – Centro</li>
                         <li> (19) 99999-9999</li>
-                        <li> contato@salaobeauty.com</li>
+                        <li> contato@studiobelle.com</li>
                     </ul>
                 </div>
 
             </div>
 
             <div class="footer-bottom">
-                <p>© 2025 Salão Beauty. Todos os direitos reservados.</p>
+                <p>© 2025 Studio Belle. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

@@ -23,21 +23,29 @@ $idUsuario = $_SESSION['idUsuario'];
 </head>
 
 <body>
-    <header class="cabecalho-servico container">
+    <header class="cabecalho">
         <div class="logo">
-            <h1>Salao Teste</h1>
+            <h1 class="titulo-principal">Studio Belle</h1>
         </div>
 
-        <div class="botao-header">
-            <a class="btn-agendamento" href="">Meus agendamentos</a>
+       
+
+        <div class="botoes-navegacao">
+            <a class="fw-bold fs-5" href="./usuario/agendamentos.php">Meus Agendamentos</a>
         </div>
+
+        <button class="menu-hamburguer" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
     <section class="sessao-servicos container my-4">
         <h2>
             Olá, <span class="fw-bold"><?= $nome ?></span>
         </h2>
-        <p class="text-muted">
+        <p class="">
             Seja bem-vindo(a)! No nosso sistema de agendamento, você escolhe os melhores serviços no dia e horário que preferir.
         </p>
 
@@ -64,12 +72,11 @@ $idUsuario = $_SESSION['idUsuario'];
                         <div class="card-footer">
                             <button
                                 class="btn-agendar-servico"
-                                data-servico="<?=$servico['nome']?>"
-                                data-idServico="<?=$servico['id_servico']?>"
-                                data-usuario="<?=$idUsuario?>"
+                                data-servico="<?= $servico['nome'] ?>"
+                                data-idServico="<?= $servico['id_servico'] ?>"
+                                data-usuario="<?= $idUsuario ?>"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agendamento"
-                                >
+                                data-bs-target="#modal-agendamento">
                                 AGENDAR
                             </button>
                         </div>
@@ -79,9 +86,9 @@ $idUsuario = $_SESSION['idUsuario'];
         </div>
     </section>
 
-    <?php 
-        include './template/modal-agendamento/agendamento.php';
-        include './template/modal-agendamento/agendamento-sucesso.php';
+    <?php
+    include './template/modal-agendamento/agendamento.php';
+    include './template/modal-agendamento/agendamento-sucesso.php';
     ?>
 
     <script src="./asset/js/agendamento.js"></script>

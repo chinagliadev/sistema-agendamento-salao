@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idProfissional = $_POST['profissional_id'];
             $data           = $_POST['data'];
             $hora           = $_POST['hora'];
-            $status         = 'Pendente'; 
+            $status         = 'marcado'; 
 
             $novoAgendamento = new Agendamento($hora, $data, $idProfissional, $idServico, $idUsuario, $status);
 
