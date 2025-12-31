@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     echo 'Bem vindo ao gerenciar_agendamento.php';
-    
+
 
 }
 
