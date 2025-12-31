@@ -7,15 +7,21 @@ class Agendamento {
     private $idProfissional; 
     private $idServico;
     private $idUsuario;
+    private $status;
 
-    public function __construct($horario, $data, $idProfissional, $idServico, $idUsuario)
+    // Construtor único. Definimos os parâmetros como null para que 
+    // você possa instanciar a classe vazia se precisar.
+    public function __construct($horario = null, $data = null, $idProfissional = null, $idServico = null, $idUsuario = null, $status = 'Pendente')
     {
         $this->horario = $horario;
         $this->data = $data;
         $this->idProfissional = $idProfissional;
         $this->idServico = $idServico;
         $this->idUsuario = $idUsuario;
+        $this->status = $status;
     }
+
+    // --- GETTERS E SETTERS ---
 
     public function getHorario(){
         return $this->horario;
@@ -56,6 +62,13 @@ class Agendamento {
     public function setIdUsuario($idUsuario){
         $this->idUsuario = $idUsuario;
     }
-}
 
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function setStatus($status){
+        $this->status = $status; 
+    }
+}
 ?>

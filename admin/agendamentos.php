@@ -8,12 +8,10 @@ $dao = new ProfissionalDAO();
 if (isset($_GET['profissional_pesquisa']) && $_GET['profissional_pesquisa'] !== '') {
     $pesquisa = $_GET['profissional_pesquisa'];
     $listaProfissionais = $dao->pesquisarProfissionais($pesquisa);
-}
-else if (isset($_GET['status']) && $_GET['status'] !== '') {
+} else if (isset($_GET['status']) && $_GET['status'] !== '') {
     $status = $_GET['status'];
     $listaProfissionais = $dao->filtrarStatusProfissional($status);
-}
-else {
+} else {
     $listaProfissionais = $dao->listarProfissionais();
 }
 
@@ -21,7 +19,7 @@ else {
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
 
-    <section class="sessao-dashboard bg-light w-100 p-4 d-flex flex-column gap-3">
+    <section class="sessao-dashboard bg-light w-100 p-4 d-flex flex-column gap-3 vh-100">
         <header class="bg-white border p-2 rounded">
             <nav class="navbar">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -42,7 +40,7 @@ else {
             <div class="filtros-tabela container-fluid my-3">
                 <div class="row g-3">
 
-                    <div class="col-12 col-md-6 d-flex align-items-center">
+                    <div class="col-12 col-md-12 d-flex align-items-center">
                         <form action="profissionais.php" method="GET" class="d-flex w-100">
                             <input
                                 type="text"
@@ -55,26 +53,58 @@ else {
                             </button>
                         </form>
                     </div>
-
-                    <div class="col-12 col-md-6 d-flex justify-content-end align-items-center gap-2">
-
-                        <div class="dropdown-center">
-                            <a class="btn btn-dark dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"
-                                data-bs-auto-close="false"> <i class="bi bi-filter"></i>
-                                Filtrar Profissionais
-                            </a>
-                        </div>
-                      
-                    </div>
-
                 </div>
             </div>
 
         </section>
 
-        <section class="bg-white border rounded">
-           
+        <section class="container-fluid py-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-3 bg-white border rounded shadow-sm">
+                        <h5 class="mb-3 text-primary"><i class="bi bi-clock-history me-2"></i>Hoje</h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Cliente</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>09:00</td>
+                                    <td>Mark Otto</td>
+                                    <td><span class="badge bg-success">Ok</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="p-3 bg-white border rounded shadow-sm">
+                        <h5 class="mb-3 text-secondary"><i class="bi bi-calendar-event me-2"></i>Próximos Dias</h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Profissional</th>
+                                    <th>Serviço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15/10</td>
+                                    <td>Carlos Silva</td>
+                                    <td>Corte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </section>
 

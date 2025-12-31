@@ -1,4 +1,4 @@
-const input = document.getElementById('input-servico');
+ const input = document.getElementById('input-servico');
 const itens = document.querySelectorAll('.item-card');
 const semResultado = document.getElementById('sem-resultado');
 
