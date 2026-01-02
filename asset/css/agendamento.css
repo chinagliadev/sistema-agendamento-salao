@@ -256,7 +256,6 @@ a {
     transform: translateY(-2px);
 }
 
-/* Melhorias no Card de Agendamento */
 .card-agendamento {
     background: white;
     border-radius: 22px;
@@ -271,7 +270,6 @@ a {
     justify-content: space-between;
 }
 
-/* Faixa lateral decorativa para um ar mais sofisticado */
 .card-agendamento::before {
     content: "";
     position: absolute;
@@ -294,7 +292,6 @@ a {
     margin-bottom: 15px;
 }
 
-/* Badge estilizada */
 .badge-agendamento {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
@@ -352,6 +349,67 @@ a {
 .badge-agendamento {
     background: linear-gradient(135
     )
+}
+
+.modal-confirmacao .modal-content {
+    border-radius: 28px;
+    border: none;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.modal-confirmacao .modal-header {
+    border-bottom: none;
+    padding: 30px 30px 10px;
+}
+
+.modal-confirmacao .modal-title {
+    font-family: 'Cormorant';
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.6rem;
+}
+
+.modal-confirmacao .modal-body {
+    padding: 10px 30px 20px;
+    color: var(--text-muted);
+}
+
+.modal-confirmacao .modal-footer {
+    border-top: none;
+    padding: 20px 30px 30px;
+    gap: 12px;
+}
+
+.btn-neutral {
+    background: var(--bg-main);
+    color: var(--text-main);
+    border: 1px solid var(--border-soft);
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-neutral:hover {
+    background: var(--border-soft);
+}
+
+.btn-confirm-cancel {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-confirm-cancel:hover {
+    background: #e60000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.3);
 }
 
 @media (max-width: 992px) {

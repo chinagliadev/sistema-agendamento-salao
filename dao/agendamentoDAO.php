@@ -54,4 +54,16 @@ class AgendamentoDAO
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function cancelarAgendamento($idServico){
+        $sql = "DELETE FROM agenda WHERE id_agenda = :id";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([
+            ':id' => $idServico
+        ]);
+
+        return $stmt->rowCount();
+    }
 }

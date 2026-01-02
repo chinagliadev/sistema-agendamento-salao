@@ -38,7 +38,7 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
             Olá, <span class="fw-bold"><?= htmlspecialchars($nome) ?></span>
         </h2>
         <p>
-            Aqui estão seus agendamentos realizados no Studio Belle 
+            Aqui estão seus agendamentos realizados no Studio Belle
         </p>
     </section>
 
@@ -49,7 +49,7 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
                 <div class="col-12 text-center mt-5">
                     <img src="../asset/img/Search-rafiki.png" alt="" style="max-width: 380px;" class="img-fluid mb-3">
                     <p class="fs-4 fw-bold text-secondary">
-                        Você ainda não possui agendamentos 
+                        Você ainda não possui agendamentos
                     </p>
                 </div>
             <?php } ?>
@@ -77,13 +77,23 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
                         </div>
 
                         <div class="card-agendamento-footer text-end">
-                            <button class="btn-cancelar">Cancelar</button>
+                            <button
+                                type="button"
+                                data-id="<?= $agendamento['id_agenda'] ?>"
+                                class="btn-cancelar btn btn-outline-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalCancelar">
+                                Cancelar
+                            </button>
                         </div>
                     </div>
                 </div>
             <?php } ?>
 
         </div>
+
+        <?php include '../template/modal-agendamento/agendamento-cancelar.php'?>
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

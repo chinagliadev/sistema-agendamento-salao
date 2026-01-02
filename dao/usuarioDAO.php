@@ -63,6 +63,7 @@ class usuarioDAO
         try {
             $sql = "
             SELECT 
+                id_agenda,
                 profissionais.nome AS profissional,
                 servicos.nome AS servico,
                 agenda.hora
