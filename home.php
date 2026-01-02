@@ -11,7 +11,7 @@ $idUsuario = $_SESSION['idUsuario'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">

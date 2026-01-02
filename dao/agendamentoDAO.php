@@ -38,24 +38,25 @@ class AgendamentoDAO
         }
     }
 
-    public function horariosOcupados($data, $idProfissional)
+   public function listarHorariosLivres($data, $idProfissional)
+{
+    $gradeCompleta = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+
+    $sql = "SELECT hora FROM agenda 
+            WHERE data_agendamento = :data 
+            AND id_profissional = :id 
+            AND status = 'marcado'";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([':data' => $data, ':id' => $idProfissional]);
+    
+    $ocupados = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    return array_values(array_diff($gradeCompleta, $ocupados));
+}
+
+    public function cancelarAgendamento($idServico)
     {
-        $sql = "SELECT hora
-            FROM agenda
-            WHERE data_agendamento = :data
-              AND id_profissional = :id_profissional
-              AND status = 'marcado'";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            ':data' => $data,
-            ':id_profissional' => $idProfissional
-        ]);
-
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
-    }
-
-    public function cancelarAgendamento($idServico){
         $sql = "DELETE FROM agenda WHERE id_agenda = :id";
 
         $stmt = $this->conn->prepare($sql);

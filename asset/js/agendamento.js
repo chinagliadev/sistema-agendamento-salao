@@ -1,4 +1,6 @@
- const input = document.getElementById('input-servico');
+
+
+const input = document.getElementById('input-servico');
 const itens = document.querySelectorAll('.item-card');
 const semResultado = document.getElementById('sem-resultado');
 
@@ -45,7 +47,7 @@ let cronometroAlerta;
 function mostrarErro(mensagem) {
     const alerta = document.getElementById('alerta-erro');
     const texto = alerta.querySelector('.msg-texto');
-    
+
     if (cronometroAlerta) {
         clearTimeout(cronometroAlerta);
     }
@@ -55,13 +57,13 @@ function mostrarErro(mensagem) {
 
     cronometroAlerta = setTimeout(() => {
         esconderErro();
-    }, 5000); 
+    }, 5000);
 }
 
 function esconderErro() {
     const alerta = document.getElementById('alerta-erro');
     alerta.classList.add('d-none');
-    
+
     cronometroAlerta = null;
 }
 
@@ -74,13 +76,13 @@ const selectProf = document.querySelector('select[name="profissional_id"]');
 
 
 btnConfirmar.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    if (selectHora.value === "" || inputData.value === "" ||selectProf.value === "" ) {
+    if (selectHora.value === "" || inputData.value === "" || selectProf.value === "") {
         mostrarErro("Por favor, preencha a data, horário e o profissional antes de continuar.");
     } else {
         esconderErro();
-        
+
         const modalForm = bootstrap.Modal.getInstance(document.getElementById('modal-agendamento'));
         const modalSucesso = new bootstrap.Modal(document.getElementById('modal-sucesso'));
         formAgendamento.submit();
@@ -94,14 +96,40 @@ btnConfirmar.addEventListener('click', (e) => {
     }
 });
 
-    const modalCancelar = document.getElementById('modalCancelar');
-    
-    modalCancelar.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const idAgenda = button.getAttribute('data-id');
-        
-        const inputId = modalCancelar.querySelector('#id_para_cancelar');
-        inputId.value = idAgenda;
+const dataInput = document.getElementById('data');
+const profissionalSelect = document.querySelector('select[name="profissional_id"]');
+const horarioSelect = document.getElementById('horario');
 
-    });
+function atualizarHorarios() {
+    const data = dataInput.value;
+    const profissional = profissionalSelect.value;
 
+    if (!data || !profissional) return;
+
+    horarioSelect.innerHTML = '<option>Carregando...</option>';
+
+    fetch(`../../controller/buscar_horarios.php?data=${data}&id_profissional=${profissional}`)
+        .then(res => res.json())
+        .then(horarios => {
+            horarioSelect.innerHTML = '<option value="">Selecione</option>';
+
+            if (horarios.length === 0) {
+                horarioSelect.innerHTML = '<option>Nenhum horário disponível</option>';
+                return;
+            }
+
+            horarios.forEach(hora => {
+                const option = document.createElement('option');
+                option.value = hora;
+                option.textContent = hora;
+                horarioSelect.appendChild(option);
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            horarioSelect.innerHTML = '<option>Erro ao carregar horários</option>';
+        });
+}
+
+dataInput.addEventListener('change', atualizarHorarios);
+profissionalSelect.addEventListener('change', atualizarHorarios);

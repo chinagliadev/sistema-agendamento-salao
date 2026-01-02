@@ -81,6 +81,7 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
                                 type="button"
                                 data-id="<?= $agendamento['id_agenda'] ?>"
                                 class="btn-cancelar btn btn-outline-danger"
+                                id="btnCancelar"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modalCancelar">
                                 Cancelar
@@ -96,6 +97,7 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
 
     </section>
 
+    <script src="../asset/js/modal-excluir-agenamento.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

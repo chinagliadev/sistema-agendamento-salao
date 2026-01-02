@@ -29,16 +29,7 @@ $listaProfissionais = $profissionalDAO->listarProfissionais();
               </label>
               <select id="horario" class="form-select" name="hora" required>
                 <option value="">Selecione</option>
-                <option>09:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-                <option>13:00</option>
-                <option>14:00</option>
-                <option>15:00</option>
-                <option>16:00</option>
-                <option>17:00</option>
-                <option>18:00</option>
+              
               </select>
             </div>
 
