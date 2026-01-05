@@ -66,6 +66,7 @@ class usuarioDAO
                 id_agenda,
                 profissionais.nome AS profissional,
                 servicos.nome AS servico,
+                data_agendamento,
                 agenda.hora
             FROM agenda
             INNER JOIN usuarios 

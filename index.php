@@ -71,7 +71,6 @@ $listaServico = $servico->listarServicos();
                 <h2>Oferecemos serviços de alta qualidade para valorizar sua imagem</h2>
             </div>
 
-            <a href="#">Todos os serviços</a>
         </div>
 
         <div class="container">

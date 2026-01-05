@@ -1,19 +1,6 @@
 <?php
 require_once '../config/autenticar.php';
 include '../template/header.php';
-require_once __DIR__ . '/../dao/ProfissionalDAO.php';
-
-$dao = new ProfissionalDAO();
-
-if (isset($_GET['profissional_pesquisa']) && $_GET['profissional_pesquisa'] !== '') {
-    $pesquisa = $_GET['profissional_pesquisa'];
-    $listaProfissionais = $dao->pesquisarProfissionais($pesquisa);
-} else if (isset($_GET['status']) && $_GET['status'] !== '') {
-    $status = $_GET['status'];
-    $listaProfissionais = $dao->filtrarStatusProfissional($status);
-} else {
-    $listaProfissionais = $dao->listarProfissionais();
-}
 
 ?>
 <main class="d-flex">

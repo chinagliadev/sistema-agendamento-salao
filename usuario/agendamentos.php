@@ -7,6 +7,7 @@ $idUsuario = $_SESSION['idUsuario'];
 
 $usuarioDAO = new UsuarioDAO();
 $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -74,6 +75,11 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
                                 <strong>Horário:</strong><br>
                                 <?= date('H:i', strtotime($agendamento['hora'])) ?>
                             </p>
+
+                            <p>
+                                <strong>Data do Agendamento:</strong><br>
+                                <?= (new DateTime($agendamento['data_agendamento']))->format('d/m/Y') ?>
+                            </p>
                         </div>
 
                         <div class="card-agendamento-footer text-end">
@@ -93,7 +99,7 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
 
         </div>
 
-        <?php include '../template/modal-agendamento/agendamento-cancelar.php'?>
+        <?php include '../template/modal-agendamento/agendamento-cancelar.php' ?>
 
     </section>
 
