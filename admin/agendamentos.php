@@ -1,16 +1,22 @@
 <?php
 require_once '../config/autenticar.php';
 include '../template/header.php';
+require_once '../dao/agendamentoDAO.php';
 
+$agendamentoDAO = new AgendamentoDAO();
+
+$agendamentoHoje = $agendamentoDAO->agendamentoDeHoje();
+$agendamentoProximosDias = $agendamentoDAO->agendamentoProximosDias();
 ?>
+
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
 
     <section class="sessao-dashboard bg-light w-100 p-4 d-flex flex-column gap-3 vh-100">
+
         <header class="bg-white border p-2 rounded">
             <nav class="navbar">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
-
                     <a class="navbar-brand fw-normal fs-5" href="#">
                         <i class="bi bi-calendar-event"></i> Agenda
                     </a>
@@ -24,102 +30,140 @@ include '../template/header.php';
         </header>
 
         <section class="bg-white border rounded">
-            <div class="filtros-tabela container-fluid my-3">
-                <div class="row g-3">
-
-                    <div class="col-12 col-md-12 d-flex align-items-center">
-                        <form action="profissionais.php" method="GET" class="d-flex w-100">
-                            <input
-                                type="text"
-                                name="profissional_pesquisa"
-                                class="form-control me-2"
-                                placeholder="Pesquisar..."
-                                style="max-width: 400px;">
-                            <button class="btn btn-outline-dark">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <div class="container-fluid my-3 d-flex">
+                <input
+                    type="text"
+                    id="campo_agenda"
+                    class="form-control"
+                    placeholder="Pesquisar Agendamento"
+                    style="max-width: 400px;">
+                <button class="btn btn-outline-dark ms-2">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
-
         </section>
 
         <section class="container-fluid py-4">
             <div class="row g-4">
-                <div class="col-md-6">
+
+                <div class="col-md-7">
                     <div class="p-3 bg-white border rounded shadow-sm">
-                        <h5 class="mb-3 text-primary"><i class="bi bi-clock-history me-2"></i>Hoje</h5>
+                        <h5 class="mb-3 text-primary">
+                            <i class="bi bi-clock-history me-2"></i>Hoje
+                        </h5>
+
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Hora</th>
                                     <th>Cliente</th>
+                                    <th>Profissional</th>
+                                    <th>Serviço</th>
                                     <th>Status</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>09:00</td>
-                                    <td>Mark Otto</td>
-                                    <td><span class="badge bg-success">Ok</span></td>
+                                <?php foreach ($agendamentoHoje as $agendamento):
+
+                                    $status = $agendamento['status'] === 'marcado' ? 'bg-warning bg-opacity-25 p-1 rounded fw-semibold text-warning' : 'bg-success bg-opacity-25  p-1 rounded fw-semibold text-success';
+
+                                ?>
+                                    <tr class="linha-agendamento">
+                                        <td><?= date('H:i', strtotime($agendamento['horario_agendado'])) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['servico']) ?></td>
+                                        <td><span class="<?= $status ?>"><?= $agendamento['status'] ?></span></td>
+                                        <td>
+                                            <?php if ($agendamento['status'] === 'marcado'): ?>
+
+                                                <form
+                                                    action="../controller/gerenciar_agendamento.php"
+                                                    method="POST"
+                                                    class="d-inline">
+                                                    <input type="hidden" name="acaoAgendamento" value="realizado">
+                                                    <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
+
+                                                    <button class="btn btn-outline-success btn-sm" title="Marcar como concluído">
+                                                        <i class="bi bi-check2"></i>
+                                                    </button>
+                                                </form>
+
+                                            <?php elseif ($agendamento['status'] === 'concluido'): ?>
+
+                                                <form
+                                                    action="../controller/gerenciar_agendamento.php"
+                                                    method="POST"
+                                                    class="d-inline">
+                                                    <input type="hidden" name="acaoAgendamento" value="cancelarConcluido">
+                                                    <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
+
+                                                    <button class="btn btn-outline-danger btn-sm" title="Cancelar conclusão">
+                                                        <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                </form>
+
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                                <tr class="msg-vazio" style="display:none;">
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Nenhum agendamento encontrado.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="p-3 bg-white border rounded shadow-sm">
-                        <h5 class="mb-3 text-secondary"><i class="bi bi-calendar-event me-2"></i>Próximos Dias</h5>
+                        <h5 class="mb-3 text-secondary">
+                            <i class="bi bi-calendar-event me-2"></i>Próximos Dias
+                        </h5>
+
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Data</th>
+                                    <th>Cliente</th>
                                     <th>Profissional</th>
                                     <th>Serviço</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>15/10</td>
-                                    <td>Carlos Silva</td>
-                                    <td>Corte</td>
+                                <?php foreach ($agendamentoProximosDias as $agendamento): ?>
+                                    <tr class="linha-agendamento">
+                                        <td><?= date('d/m', strtotime($agendamento['data_agendamento'])) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
+                                        <td><?= htmlspecialchars($agendamento['servico']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                                <tr class="msg-vazio" style="display:none;">
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Nenhum agendamento encontrado.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </section>
     </section>
-
 </main>
 
-<script src="https://unpkg.com/imask"></script>
-
-<script src="../asset/js/profissionais.js"></script>
-
-<script src="../asset/js/validar-editar-profissional.js"></script>
-<script src="../asset/js/validar-cadastro-modal.js"></script>
-
 <script src="../asset/js/menu-lateral.js"></script>
-
-
-<script>
-    const btnMenu = document.getElementById('btn-menu');
-    const menu = document.querySelector('.menu_lateral');
-    const body = document.body;
-
-    btnMenu.addEventListener('click', () => {
-        menu.classList.toggle('ativo');
-        body.classList.toggle('menu-aberto');
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../asset/js/pagina_agendamento.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

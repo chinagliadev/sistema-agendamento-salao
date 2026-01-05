@@ -123,4 +123,15 @@ class ServicoDAO
 
         return $dadosServico->rowCount();
     }
+
+    public function pesquisarServico($item) : array{
+        $sql = "SELECT * FROM servicos WHERE nome = :servico";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':servico' => $item
+        ]);
+
+
+        return $stmt->fetchAll();
+    }
 }

@@ -5,7 +5,14 @@ require_once __DIR__ . '/../dao/servicoDAO.php';
 
 $servico = new ServicoDAO();
 
-$listaServico = $servico->listarServicos();
+if (isset($_GET['servico_pesquisa']) && trim($_GET['servico_pesquisa']) !== '') {
+    $pesquisa = trim($_GET['servico_pesquisa']);
+    $listaServico = $servico->pesquisarServico($pesquisa);
+} else {
+    $listaServico = $servico->listarServicos();
+}
+
+
 ?>
 <main class="d-flex">
     <?php include('../template/menu.php'); ?>
@@ -32,10 +39,10 @@ $listaServico = $servico->listarServicos();
                 <div class="row g-3">
 
                     <div class="col-12 col-md-6 d-flex align-items-center">
-                        <form action="" method="GET" class="d-flex w-100">
+                        <form action="servicos.php" method="GET" class="d-flex w-100">
                             <input
                                 type="text"
-                                name="profissional_pesquisa"
+                                name="servico_pesquisa"
                                 class="form-control me-2"
                                 placeholder="Pesquisar..."
                                 style="max-width: 400px;">

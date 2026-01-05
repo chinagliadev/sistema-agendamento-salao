@@ -1,10 +1,9 @@
 <?php
 require_once __DIR__ . '/../config/conexao.php';
 require_once __DIR__ . '/../dao/agendamentoDAO.php';
-require_once __DIR__ . '/../model/Agendamento.php'; 
+require_once __DIR__ . '/../model/Agendamento.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_POST['id_agenda']);
 
     if (!isset($_POST['acaoAgendamento'])) {
         header('Location: ../home.php?error=acao_invalida');
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idProfissional = $_POST['profissional_id'];
             $data           = $_POST['data'];
             $hora           = $_POST['hora'];
-            $status         = 'marcado'; 
+            $status         = 'marcado';
 
             $novoAgendamento = new Agendamento($hora, $data, $idProfissional, $idServico, $idUsuario, $status);
 
@@ -36,11 +35,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idServico = $_POST['id_agenda'];
             $sucesso = $agendamentoDAO->cancelarAgendamento($idServico);
 
-            if($sucesso > 0){
+            if ($sucesso > 0) {
                 header('Location: ../usuario/agendamentos.php?status=sucesso');
-            }else{
+            } else {
                 header('Location: ../usuario/agendamentos.php?status=error');
             }
+
+        case 'realizado':
+            $id = $_POST['id'];
+
+            $sucesso = $agendamentoDAO->concluirAgendamento($id);
+
+            if ($sucesso > 0) {
+                header('Location: ../admin/agendamentos.php?status=sucesso');
+            } else {
+                header('Location: ../admin/agendamentos.php?status=error');
+            }
+
+            break;
+
+        case 'cancelarConcluido':
+            $id = $_POST['id'];
+
+            $sucesso = $agendamentoDAO->cancelarConclusao($id);
+
+            if ($sucesso > 0) {
+                header('Location: ../admin/agendamentos.php?status=sucesso');
+            } else {
+                header('Location: ../admin/agendamentos.php?status=error');
+            }
+            break;
 
         default:
             header('../usuario/agendamentos.php');
@@ -51,4 +75,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 header('../usuario/agendamentos.php');
 exit();
-?>

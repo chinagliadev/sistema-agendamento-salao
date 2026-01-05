@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $descricao,
                 $preco,
                 $duracao,
-                $foto_servico // pode ser null → não atualiza a foto
+                $foto_servico 
             );
 
             $success_param = 'editado';
