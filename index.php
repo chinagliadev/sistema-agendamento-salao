@@ -1,13 +1,21 @@
 <?php
+session_start();
+
 require('./config/conexao.php');
 include_once('./dao/servicoDAO.php');
 
 $servico = new ServicoDAO();
 $listaServico = $servico->listarServicos();
+
+
+
+$login = $_SESSION['usuario_logado'] ?? false;
+$nome_usuario = $_SESSION['nomeUsuario'] ?? '';
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -36,9 +44,16 @@ $listaServico = $servico->listarServicos();
         </nav>
 
         <div class="botoes-navegacao">
+
+        <?php if($login){?>
+            <a href="./usuario/agendamentos.php"><?= $nome_usuario ?></a>
+            <a href="./config/logout.php">Sair</a>
+        <?php } else {?>
             <a href="./login.php">Login</a>
-            <a href="./cadastros-login.php">Cadastrar</a>
-        </div>
+                <a href="./cadastros-login.php">Cadastrar</a>
+            </div>
+        <?php } ?>
+
 
         <button class="menu-hamburguer" aria-label="Abrir Menu">
             <span></span>

@@ -26,7 +26,11 @@ $listaAgendamentos = $usuarioDAO->agendamentos($idUsuario);
 
     <header class="cabecalho">
         <div class="logo">
-            <h1 class="titulo-principal">Studio Belle</h1>
+            <h1 class="titulo-principal">
+                <a href="../index.php">
+                    Studio Belle
+                </a>
+            </h1>
         </div>
 
         <div class="botoes-navegacao">

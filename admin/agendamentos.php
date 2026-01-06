@@ -46,7 +46,7 @@ $agendamentoProximosDias = $agendamentoDAO->agendamentoProximosDias();
         <section class="container-fluid py-4">
             <div class="row g-4">
 
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="p-3 bg-white border rounded shadow-sm">
                         <h5 class="mb-3 text-primary">
                             <i class="bi bi-clock-history me-2"></i>Hoje
@@ -120,7 +120,7 @@ $agendamentoProximosDias = $agendamentoDAO->agendamentoProximosDias();
                     </div>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="p-3 bg-white border rounded shadow-sm">
                         <h5 class="mb-3 text-secondary">
                             <i class="bi bi-calendar-event me-2"></i>Próximos Dias

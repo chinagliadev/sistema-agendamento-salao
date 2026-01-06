@@ -38,6 +38,30 @@ class AgendamentoDAO
         }
     }
 
+    public function listarTodos(): array
+    {
+        $sql = "SELECT 
+    a.id_agenda AS id_agenda,
+    a.data_agendamento,
+    a.hora AS hora,
+    a.status,
+    u.nome AS cliente,
+    s.nome AS servico,
+    p.nome AS profissional
+FROM agenda a
+INNER JOIN usuarios u ON u.id_usuario = a.id_usuario
+INNER JOIN servicos s ON s.id_servico = a.id_servico
+INNER JOIN profissionais p ON p.id_profissional = a.id_profissional
+ORDER BY a.data_agendamento ASC, a.hora ASC;
+    ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function listarHorariosLivres($data, $idProfissional)
     {
         $gradeCompleta = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
@@ -122,7 +146,7 @@ class AgendamentoDAO
 
         return $stmt->rowCount();
     }
-    
+
     public function cancelarConclusao($id)
     {
         $sql = "UPDATE agenda SET status = 'marcado' WHERE id_agenda = :id";
@@ -131,5 +155,49 @@ class AgendamentoDAO
         $stmt->execute();
 
         return $stmt->rowCount();
+    }
+
+    public function quantidadeAgendamentosPorServico()
+    {
+        $sql = "SELECT 
+                servicos.nome AS servico,
+                COUNT(agenda.id_agenda) AS total
+            FROM agenda
+            INNER JOIN servicos 
+                ON agenda.id_servico = servicos.id_servico
+            GROUP BY servicos.id_servico, servicos.nome";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function quantidadeAgendamentosHoje(): int
+    {
+        $sql = "SELECT COUNT(*) FROM agenda WHERE data_agendamento = CURDATE()";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function agendamentosUltimos7Dias(): array
+    {
+        $sql = "
+        SELECT 
+            DATE(data_agendamento) AS data,
+            COUNT(*) AS total
+        FROM agenda
+        WHERE data_agendamento >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+        GROUP BY DATE(data_agendamento)
+        ORDER BY data_agendamento ASC
+    ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

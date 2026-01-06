@@ -25,10 +25,14 @@ $idUsuario = $_SESSION['idUsuario'];
 <body>
     <header class="cabecalho">
         <div class="logo">
-            <h1 class="titulo-principal">Studio Belle</h1>
+            <h1 class="titulo-principal">
+                <a href="./index.php">
+                    Studio Belle
+                </a>
+            </h1>
         </div>
 
-       
+
 
         <div class="botoes-navegacao">
             <a class="fw-bold fs-5" href="./usuario/agendamentos.php">Meus Agendamentos</a>

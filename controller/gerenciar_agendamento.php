@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 header('Location: ../usuario/agendamentos.php?status=error');
             }
+            break;
 
         case 'realizado':
             $id = $_POST['id'];

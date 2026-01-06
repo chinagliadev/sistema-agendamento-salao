@@ -1,6 +1,6 @@
 .menu_lateral {
     background-color: #ffffff;
-    min-width: 230px;
+    min-width: 280px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
