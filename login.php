@@ -23,38 +23,49 @@ $erro_login = (isset($_GET['error']) && $_GET['error'] === 'true')
 <body>
     <div class="container">
         <main class="conteudo-principal vh-100 d-flex align-items-center justify-content-center">
-            <div class="w-100 formulario">
-                <form action="./controller/LoginController.php" method="post" id="form_login">
-                    <h1 class="fs-2 fw-bold text-center">LOGIN</h1>
-                    <p class="fs-5 paragrafo-login text-center">
-                        Bem-vindo ao sistema de agendamento do salão. Faça login para agendar seu horário.
-                    </p>
+            <div class="row formulario align-items-center">
+                <div class="col-md-6 d-none d-md-block ">
+                    <img src="./asset/img/Tablet login-pana.png" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <form action="./controller/LoginController.php" method="post" id="form_login">
+                        <h1 class="fs-2 fw-bold text-center">LOGIN</h1>
+                        <p class="fs-5 paragrafo-login text-center">
+                            Bem-vindo ao sistema de agendamento do salão. Faça login para agendar seu horário.
+                        </p>
 
-                    <div class="mb-3">
-                        <label for="txtEmail" class="form-label">Email</label>
-                        <input type="email" name="txtEmail" id="txtEmail" class="form-control">
-                        <p class="mensagem-erro fw-semibold p-1 text-danger rounded d-none"></p>
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtSenha" class="form-label">Senha</label>
-                        <input type="password" name="txtSenha" id="txtSenha" class="form-control">
-                        <p class="mensagem-erro fw-semibold p-1 text-danger rounded d-none"></p>
-                    </div>
+                        <div class="mb-3">
+                            <label for="txtEmail" class="form-label">Email</label>
+                            <input type="email" name="txtEmail" id="txtEmail" class="form-control">
+                            <p class="mensagem-erro fw-semibold p-1 text-danger rounded d-none"></p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtSenha" class="form-label">Senha</label>
+                            <input type="password" name="txtSenha" id="txtSenha" class="form-control">
+                            <p class="mensagem-erro fw-semibold p-1 text-danger rounded d-none"></p>
+                        </div>
 
-                    <div id="mensagem-sucesso-cadastro" class="alert alert-success <?= $mensagem_sucesso ?>" role="alert">
-                        Cadastro realizado com sucesso
-                    </div>
+                        <div id="mensagem-sucesso-cadastro" class="alert alert-success <?= $mensagem_sucesso ?>" role="alert">
+                            Cadastro realizado com sucesso
+                        </div>
 
-                    <div id="mensagem-error-login" class="alert alert-danger <?= $erro_login ?>" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill"></i> Email do usuario ou senha incorretos. Tente novamente
-                    </div>
+                        <div id="mensagem-error-login" class="alert alert-danger <?= $erro_login ?>" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill"></i> Email do usuario ou senha incorretos. Tente novamente
+                        </div>
 
-                    <div class="mb-3 text-center">
-                        <span class=" fs-6 text-secondary">Não possui uma conta? Cadastre-se <a class="text-decoration-none" href="./cadastros-login.php">aqui</a>.</span>
-                    </div>
+                        <div class="mb-3 text-center">
+                            <span class=" fs-6 text-secondary">Não possui uma conta? Cadastre-se <a class="text-decoration-none" href="./cadastros-login.php">aqui</a>.</span>
+                        </div>
 
-                    <button class="w-100 btn-login fw-bold" id="btnLogin">ENTRAR</button>
-                </form>
+                        <button class="w-100 btn-login fw-bold" id="btnLogin">ENTRAR</button>
+
+                        <div class="text-center mt-3">
+                            <a class="text-decoration-none text-dark" href="./index.php">Voltar para o inicio</a>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
 
         </main>

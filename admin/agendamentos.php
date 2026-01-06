@@ -45,121 +45,140 @@ $agendamentoProximosDias = $agendamentoDAO->agendamentoProximosDias();
 
         <section class="container-fluid py-4">
             <div class="row g-4">
-
                 <div class="col-md-6">
-                    <div class="p-3 bg-white border rounded shadow-sm">
-                        <h5 class="mb-3 text-primary">
-                            <i class="bi bi-clock-history me-2"></i>Hoje
-                        </h5>
-
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Hora</th>
-                                    <th>Cliente</th>
-                                    <th>Profissional</th>
-                                    <th>Serviço</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($agendamentoHoje as $agendamento):
-
-                                    $status = $agendamento['status'] === 'marcado' ? 'bg-warning bg-opacity-25 p-1 rounded fw-semibold text-warning' : 'bg-success bg-opacity-25  p-1 rounded fw-semibold text-success';
-
-                                ?>
-                                    <tr class="linha-agendamento">
-                                        <td><?= date('H:i', strtotime($agendamento['horario_agendado'])) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['servico']) ?></td>
-                                        <td><span class="<?= $status ?>"><?= $agendamento['status'] ?></span></td>
-                                        <td>
-                                            <?php if ($agendamento['status'] === 'marcado'): ?>
-
-                                                <form
-                                                    action="../controller/gerenciar_agendamento.php"
-                                                    method="POST"
-                                                    class="d-inline">
-                                                    <input type="hidden" name="acaoAgendamento" value="realizado">
-                                                    <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
-
-                                                    <button class="btn btn-outline-success btn-sm" title="Marcar como concluído">
-                                                        <i class="bi bi-check2"></i>
-                                                    </button>
-                                                </form>
-
-                                            <?php elseif ($agendamento['status'] === 'concluido'): ?>
-
-                                                <form
-                                                    action="../controller/gerenciar_agendamento.php"
-                                                    method="POST"
-                                                    class="d-inline">
-                                                    <input type="hidden" name="acaoAgendamento" value="cancelarConcluido">
-                                                    <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
-
-                                                    <button class="btn btn-outline-danger btn-sm" title="Cancelar conclusão">
-                                                        <i class="bi bi-x-lg"></i>
-                                                    </button>
-                                                </form>
-
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-
-                                <tr class="msg-vazio" style="display:none;">
-                                    <td colspan="4" class="text-center text-muted py-4">
-                                        <i class="bi bi-info-circle me-1"></i>
-                                        Nenhum agendamento encontrado.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <p class="text-muted mb-3">
+                                <i class="bi bi-calendar-check me-1"></i>
+                                Agenda
+                            </p>
+                            <div id="calendar" style="width: 100%;"></div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="p-3 bg-white border rounded shadow-sm">
-                        <h5 class="mb-3 text-secondary">
-                            <i class="bi bi-calendar-event me-2"></i>Próximos Dias
-                        </h5>
 
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Data</th>
-                                    <th>Cliente</th>
-                                    <th>Profissional</th>
-                                    <th>Serviço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($agendamentoProximosDias as $agendamento): ?>
-                                    <tr class="linha-agendamento">
-                                        <td><?= date('d/m', strtotime($agendamento['data_agendamento'])) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
-                                        <td><?= htmlspecialchars($agendamento['servico']) ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <h5 class="mb-3 text-primary">
+                                    <i class="bi bi-clock-history me-2"></i>Hoje
+                                </h5>
 
-                                <tr class="msg-vazio" style="display:none;">
-                                    <td colspan="4" class="text-center text-muted py-4">
-                                        <i class="bi bi-info-circle me-1"></i>
-                                        Nenhum agendamento encontrado.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Hora</th>
+                                            <th>Cliente</th>
+                                            <th>Profissional</th>
+                                            <th>Serviço</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($agendamentoHoje as $agendamento):
+
+                                            $status = $agendamento['status'] === 'marcado' ? 'bg-warning bg-opacity-25 p-1 rounded fw-semibold text-warning' : 'bg-success bg-opacity-25  p-1 rounded fw-semibold text-success';
+
+                                        ?>
+                                            <tr class="linha-agendamento">
+                                                <td><?= date('H:i', strtotime($agendamento['horario_agendado'])) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['servico']) ?></td>
+                                                <td><span class="<?= $status ?>"><?= $agendamento['status'] ?></span></td>
+                                                <td>
+                                                    <?php if ($agendamento['status'] === 'marcado'): ?>
+
+                                                        <form
+                                                            action="../controller/gerenciar_agendamento.php"
+                                                            method="POST"
+                                                            class="d-inline">
+                                                            <input type="hidden" name="acaoAgendamento" value="realizado">
+                                                            <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
+
+                                                            <button class="btn btn-outline-success btn-sm" title="Marcar como concluído">
+                                                                <i class="bi bi-check2"></i>
+                                                            </button>
+                                                        </form>
+
+                                                    <?php elseif ($agendamento['status'] === 'concluido'): ?>
+
+                                                        <form
+                                                            action="../controller/gerenciar_agendamento.php"
+                                                            method="POST"
+                                                            class="d-inline">
+                                                            <input type="hidden" name="acaoAgendamento" value="cancelarConcluido">
+                                                            <input type="hidden" name="id" value="<?= $agendamento['id'] ?>">
+
+                                                            <button class="btn btn-outline-danger btn-sm" title="Cancelar conclusão">
+                                                                <i class="bi bi-x-lg"></i>
+                                                            </button>
+                                                        </form>
+
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+
+                                        <tr class="msg-vazio" style="display:none;">
+                                            <td colspan="4" class="text-center text-muted py-4">
+                                                <i class="bi bi-info-circle me-1"></i>
+                                                Nenhum agendamento encontrado.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <h5 class="mb-3 text-secondary">
+                                    <i class="bi bi-calendar-event me-2"></i>Próximos Dias
+                                </h5>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Cliente</th>
+                                            <th>Profissional</th>
+                                            <th>Serviço</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($agendamentoProximosDias as $agendamento): ?>
+                                            <tr class="linha-agendamento">
+                                                <td><?= date('d/m', strtotime($agendamento['data_agendamento'])) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['cliente']) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['nome_profissional']) ?></td>
+                                                <td><?= htmlspecialchars($agendamento['servico']) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+
+                                        <tr class="msg-vazio" style="display:none;">
+                                            <td colspan="4" class="text-center text-muted py-4">
+                                                <i class="bi bi-info-circle me-1"></i>
+                                                Nenhum agendamento encontrado.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
         </section>
     </section>
 </main>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
 
 <script src="../asset/js/menu-lateral.js"></script>
 <script src="../asset/js/pagina_agendamento.js"></script>

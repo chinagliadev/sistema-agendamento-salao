@@ -190,34 +190,3 @@ criarGraficoAgendamentos7Dias();
 criarGraficoBarrasQtdServicosAgendados();
 
 criarGraficoProfissionais();
-
-var calendarEl = document.getElementById('calendar');
-
-var calendar = new FullCalendar.Calendar(calendarEl, {
-  initialView: 'dayGridMonth',
-
-  locale: 'pt-br',
-
-  events: '../api/agendamentos/calendario.php',
-
-  headerToolbar: {
-    left: 'prev,next today',
-    center: 'title',
-    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-  },
-
-  buttonText: {
-    today: 'Hoje',
-    month: 'Mês',
-    week: 'Semana',
-    day: 'Dia'
-  },
-
-  eventTimeFormat: {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false 
-  }
-});
-
-calendar.render();

@@ -146,8 +146,8 @@ $qtdUsuario = $usuario->qtdUsuario();
                 </div>
             </div>
 
-            <div id="calendar"></div>
 
+            
 
 
         </div>
